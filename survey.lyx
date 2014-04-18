@@ -1,0 +1,7290 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass article
+\begin_preamble
+
+%PracTEXreplacement
+
+% LyX includes graphicx if any pictures are used; so put in ERT boxes
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+
+%\usepackage{cite} % numerically sorts multiple references contained in one citation
+
+\usepackage{url} % don't let LyX do this, because IfFileExists confuses HeVeA
+
+\setlength{\fboxsep}{.25in}
+
+\usepackage{array}
+\setlength\extrarowheight{1pt}
+
+\usepackage{color,hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{
+  pdfauthor = {Stephen G. Hartke},
+  pdftitle = {A Survey of Free Math Fonts for LaTeX},
+  pdfsubject = {free math fonts for LaTeX},
+  pdfkeywords = {LaTeX, TeX, math font, free},
+  pdfcreator = {LaTeX with hyperref package},
+  pdfproducer = {pdflatex},
+  pdfview = FitH,
+  pdfstartview = FitH,
+  linkcolor = linkcolour, % colors don't work?
+  citecolor = linkcolour,
+  filecolor = linkcolour,
+  urlcolor = linkcolour,
+  pagecolor = linkcolour,
+  colorlinks
+}
+
+\usepackage{ifthen}
+\usepackage{hevea}
+\ifthenelse{\boolean{hevea}}
+{
+  \newcommand{\l}{\begin{rawhtml}&#322;\end{rawhtml}}
+  \newcommand{\acuten}{\begin{rawhtml}&#324;\end{rawhtml}}
+  %\newcommand{\textbackslash}{\begin{rawhtml}&#92;\end{rawhtml}}
+  \newcommand{\captiontitle}[2][dummy]{\caption{#2}}
+  \newcommand{\captionbreak}{}
+  \newenvironment{sidewaystable}{\begin{table}}{\end{table}}
+  \renewcommand{\LaTeX}{LaTeX}  % looks silly in HTML
+  \renewcommand{\TeX}{TeX}
+  \newcommand{\MF}{METAFONT}
+  \newcommand{\pic}[1]
+     {\begin{center}
+         \begin{rawhtml}<table align="center" border="1"><tr><td width="0" align="center"><img src="\end{rawhtml}images/#1.png\begin{rawhtml}"></td></tr></table>\end{rawhtml}
+      \end{center}}
+  \renewcommand{\@figrule}{}  % no hrule around floats
+ % fixes colors
+ \htmlhead{\begin{rawhtml}
+  <title>A Survey of Free Math Fonts for TeX and LaTeX</title>
+  <style type="text/css">
+    BODY { background-color: white; color: black; }
+    A:link { color: #003399; text-decoration: none; }
+    A:active { color: blue; text-decoration: underline; }
+    A:visited { color: #003399; text-decoration: none; }
+    A:hover { color: blue; text-decoration: underline; }
+    H5 {font-size: 110\%;  font-weight: bold; }
+  </style>\end{rawhtml}}
+  \title{A Survey of Free Math Fonts for \TeX{} and \LaTeX{}%
+  \footnote{Copyright 2006 Stephen G.\  Hartke. Permission is granted to distribute verbatim or modified copies of this document provided this notice remains intact.\protect \\ An initial version of this article appeared in \emph{The Prac\TeX{} Journal,} 1, 2006,  \protect\url{http://www.tug.org/pracjourn/2006-1/hartke/}.\protect \\
+The permanent home of this article is \protect\url{http://ctan.tug.org/tex-archive/info/Free_Math_Font_Survey}.}}
+  \author{Stephen G. Hartke\footnote{Email: lastname @ gmail dot com.}}
+  \date{May 5, 2006}
+}
+{
+  \usepackage[letterpaper,text={6.5in,9in}]{geometry}
+  \usepackage{palatino}\renewcommand{\ttdefault}{txtt}
+  \usepackage{rotating} % to rotate large table
+  \newcommand{\acuten}{\'n}
+  \newcommand{\pic}[1]
+        %{\hspace*{-\fboxsep}\framebox{\includegraphics{#1.eps}}} % for PracTeX
+        {\framebox{\includegraphics{#1.eps}}}
+  \usepackage{topcapt}  % put captions above figures
+  %\setlength{\abovecaptionskip}{0pt}
+  \newcommand{\captiontitle}[2][]{\topcaption{#2}}
+  \DeclareRobustCommand\captionbreak{\\\hspace*{\fill}}
+  \@ifundefined{MF}{\newcommand{\MF}{METAFONT}} % defined by practex, but not by others
+}
+
+
+\newcommand{\CTAN}[1]{%
+  \ifthenelse{\boolean{hevea}}% HeVeA does not allow parameters in href
+  {\ahref{http://ctan.tug.org/tex-archive#1/}{CTAN:\texttt{#1}}}%
+  {\href{http://ctan.tug.org/tex-archive#1/}{CTAN:\texttt{#1}}}%
+}
+\newcommand{\TUGboat}[2]{%
+  \ifthenelse{\boolean{hevea}}%
+  {\ahref{http://www.tug.org/TUGboat/Articles/#1}{#2}}%
+  {\href{http://www.tug.org/TUGboat/Articles/#1}{#2}}%
+}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize 12
+\spacing single 
+\papersize Default
+\paperpackage a4
+\use_geometry 0
+\use_amsmath 0
+\use_natbib 0
+\use_numerical_citations 0
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+
+\layout Title
+
+A Survey of Free Math Fonts for TeX and LaTeX
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+Copyright 2006 Stephen G.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+ 
+\end_inset 
+
+ Hartke.
+ Permission is granted to distribute verbatim or modified copies of this
+ document provided this notice remains intact.
+\newline 
+An initial version of this article appeared in 
+\emph on 
+The PracTeX Journal,
+\emph default 
+ 1, 2006, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.tug.org/pracjourn/2006-1/hartke/}
+\end_inset 
+
+.
+\newline 
+The permanent home of this article is 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://ctan.tug.org/tex-archive/info/Free_Math_Font_Survey}
+\end_inset 
+
+.
+\end_inset 
+
+
+\layout Author
+
+Stephen G.
+ Hartke
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+Email: lastname @ gmail dot com.
+\end_inset 
+
+
+\layout Date
+
+May 5, 2006
+\layout Comment
+
+The title, author, and date are in the preamble for HeVeA.
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{htmlonly}
+\end_inset 
+
+
+\layout Standard
+
+
+\series bold 
+Note:
+\series default 
+ 
+\emph on 
+This survey is also available in 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+href{survey.pdf}{PDF}
+\end_inset 
+
+ format.
+\emph default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+medskip
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{htmlonly}
+\end_inset 
+
+
+\layout Section*
+
+Contents
+\layout Standard
+\noindent 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[sec:Intro]{
+\end_inset 
+
+
+\series bold 
+Introduction
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{latexonly}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hfill
+\end_inset 
+
+
+\series bold 
+
+\begin_inset LatexCommand \pageref{sec:Intro}
+
+\end_inset 
+
+
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{latexonly}
+\end_inset 
+
+
+\layout Standard
+\noindent 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[sec:TeXFonts]{
+\end_inset 
+
+
+\series bold 
+Fonts Originally Designed for TeX
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{latexonly}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hfill
+\end_inset 
+
+
+\series bold 
+
+\begin_inset LatexCommand \pageref{sec:TeXFonts}
+
+\end_inset 
+
+
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{latexonly}
+\end_inset 
+
+
+\layout Quote
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:CM]{
+\end_inset 
+
+Computer Modern
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:CMBright]{
+\end_inset 
+
+CM Bright
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:ConcEuler]{
+\end_inset 
+
+Concrete and Euler
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:ConcMath]{
+\end_inset 
+
+Concrete Math
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Iwona]{
+\end_inset 
+
+Iwona
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Kurier]{
+\end_inset 
+
+Kurier
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:AntPolt]{
+\end_inset 
+
+Antykwa P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+tawskiego
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:AntTor]{
+\end_inset 
+
+Antykwa Toru
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+acuten{}
+\end_inset 
+
+ska
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+\noindent 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[sec:PSFonts]{
+\end_inset 
+
+
+\series bold 
+Core Postscript Fonts
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{latexonly}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hfill
+\end_inset 
+
+
+\series bold 
+
+\begin_inset LatexCommand \pageref{sec:PSFonts}
+
+\end_inset 
+
+
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{latexonly}
+\end_inset 
+
+
+\layout Quote
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Kerkis]{
+\end_inset 
+
+Kerkis
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Millen]{
+\end_inset 
+
+Millennial
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:fouriernc]{
+\end_inset 
+
+fouriernc
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:pxfonts]{
+\end_inset 
+
+pxfonts
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Pazo]{
+\end_inset 
+
+Pazo
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:mathpple]{
+\end_inset 
+
+mathpple
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:txfonts]{
+\end_inset 
+
+txfonts
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Belleek]{
+\end_inset 
+
+Belleek
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:mathptmx]{
+\end_inset 
+
+mathptmx
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:mbtimes]{
+\end_inset 
+
+mbtimes
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+\noindent 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[sec:OtherFonts]{
+\end_inset 
+
+
+\series bold 
+Other Free Fonts
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{latexonly}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hfill
+\end_inset 
+
+
+\series bold 
+
+\begin_inset LatexCommand \pageref{sec:OtherFonts}
+
+\end_inset 
+
+
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{latexonly}
+\end_inset 
+
+
+\layout Quote
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:Arev]{
+\end_inset 
+
+Arev Sans
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:chartermd]{
+\end_inset 
+
+Math Design with Charter
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:comicsans]{
+\end_inset 
+
+Comic Sans
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:garamd]{
+\end_inset 
+
+Math Design with Garamond
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:fourier]{
+\end_inset 
+
+Fourier-GUTenberg
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[fig:utopiamd]{
+\end_inset 
+
+Math Design with Utopia
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+\noindent 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[sec:Compar]{
+\end_inset 
+
+
+\series bold 
+Comparison of Features
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{latexonly}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hfill
+\end_inset 
+
+
+\series bold 
+
+\begin_inset LatexCommand \pageref{sec:Compar}
+
+\end_inset 
+
+
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{latexonly}
+\end_inset 
+
+
+\layout Standard
+\noindent 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hyperref[sec:Creation]{
+\end_inset 
+
+
+\series bold 
+Creation of this Survey
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{latexonly}
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hfill
+\end_inset 
+
+
+\series bold 
+
+\begin_inset LatexCommand \pageref{sec:Creation}
+
+\end_inset 
+
+
+\series default 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{latexonly}
+\end_inset 
+
+
+\layout Section
+
+
+\begin_inset LatexCommand \label{sec:Intro}
+
+\end_inset 
+
+Introduction
+\layout Standard
+
+One of the biggest challenges in selecting a font for TeX or LaTeX is that
+ there are not very many math fonts that match the plethora of available
+ text fonts.
+ It's reasonably easy to use an arbitrary Postscript Type\SpecialChar ~
+1 font in TeX for
+ text (see Philipp Lehman's Font Installation Guide\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANfontinstgd}
+
+\end_inset 
+
+), but obtaining and configuring a matching math font from scratch is a
+ demanding task.
+ Thus, there are few math fonts for TeX, and in particular very few free
+ ones.
+ However, in the past few years, several very nice free fonts have been
+ released.
+ The goal of this article is to list all of the free math fonts and to provide
+ examples.
+\layout Standard
+
+
+\begin_inset Quotes eld
+\end_inset 
+
+Free
+\begin_inset Quotes erd
+\end_inset 
+
+ here means fonts that are free to use (both commercially and non-com\SpecialChar \-
+mercially)
+ and free to distribute, but not necessarily free to modify.
+ I also am biased towards listing fonts that have outline versions in PostScript
+ Type\SpecialChar ~
+1 format suitable for embedding in Postscript PS or Adobe Acrobat PDF
+ files.
+ Donald E.
+ Knuth originally designed the 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\backslash 
+ 
+\end_inset 
+
+ system for producing fonts for TeX in bitmap format.
+ PS or PDF files that have embedded bitmap fonts do not display well in
+ Adobe Acrobat Reader,
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+Starting with version 6, Adobe Acrobat Reader displays bitmap fonts fine.
+ The free PDF viewers Ghostview and xpdf have always displayed bitmap fonts
+ accurately.
+\end_inset 
+
+ to the point of being almost unreadable on the screen, and are also noticeable
+ when printing at extremely high resolutions (on photo-setters, for instance).
+ Since outline fonts contain mathematical descriptions of the curves used
+ in each glyph, they can be scaled to any resolution while retaining image
+ quality.
+\layout Standard
+
+The fonts listed here are categorized according to their origin: whether
+ originally designed for TeX, related to the standard Postscript fonts,
+ or other free fonts.
+ A font's origin does not particularly bear on its quality or suitability
+ for typesetting mathematics.
+ No recommendations or evaluations of the fonts are given here, as people's
+ tastes in fonts vary greatly.
+ The goal of this survey is simply to make authors aware of all their options.
+\layout Standard
+
+Most of the fonts can be selected by including a single package in the preamble
+ of the user's LaTeX file (the 
+\emph on 
+preamble
+\emph default 
+ is the section after 
+\begin_inset Quotes eld
+\end_inset 
+
+
+\family typewriter 
+
+\backslash 
+documentclass{}
+\family default 
+
+\begin_inset Quotes erd
+\end_inset 
+
+ and before 
+\begin_inset Quotes eld
+\end_inset 
+
+
+\family typewriter 
+
+\backslash 
+begin{document}
+\family default 
+
+\begin_inset Quotes erd
+\end_inset 
+
+).
+ The line or lines to include for each font are listed in the caption of
+ the sample figure.
+ For example 
+\begin_inset Quotes eld
+\end_inset 
+
+
+\family typewriter 
+
+\backslash 
+usepackage{fourier}
+\family default 
+
+\begin_inset Quotes erd
+\end_inset 
+
+ uses Utopia and Fourier-GUTenberg, as shown in the sample LaTeX file in
+ Section\SpecialChar ~
+
+\begin_inset LatexCommand \ref{sec:Creation}
+
+\end_inset 
+
+.
+\layout Standard
+
+Walter A.
+ Schmidt also has a survey in German of math fonts\SpecialChar ~
+
+\begin_inset LatexCommand \cite{WASmathfonts}
+
+\end_inset 
+
+ that concentrates more on commercial fonts.
+ Schmidt's survey has several examples that show different pairings between
+ text fonts and math fonts.
+\layout Section
+
+
+\begin_inset LatexCommand \label{sec:TeXFonts}
+
+\end_inset 
+
+Fonts Originally Designed for TeX
+\layout Standard
+
+These fonts were originally designed for use with TeX, using either 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\backslash 
+ 
+\end_inset 
+
+ or MetaType1\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANmetatype1}
+
+\end_inset 
+
+.
+\layout Paragraph
+
+Computer Modern:
+\layout Standard
+
+Knuth created Computer Modern\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CMBook}
+
+\end_inset 
+
+ as the default font for TeX.
+ The font set includes serif, sans serif, and monospaced text faces, and
+ corresponding math fonts.
+ The math symbol set is very complete.
+ Computer Modern is 
+\emph on 
+the
+\emph default 
+ font for TeX, which leads some to claim that the font is overused.
+ The characters are fairly thin and light, and so are not as readable on
+ screen in small sizes or from high-resolution laser printers.
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+When on screen, the fonts are usually anti-aliased, often into a gray blur
+ because the stems are not thick enough to fill a pixel.
+ When printed with a high-resolution laser printer, the fonts are shown
+ accurately, but I think are too thin.
+ With a medium-resolution printer like an inkjet, there's enough resolution
+ to show the form of the letters (unlike on screen), but the low-resolution
+ "bulks up" the letters compared to a high-resolution laser printer, with
+ the letters thus appearing darker.
+\end_inset 
+
+ In a comparison by Raph Levien\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CMRgain}
+
+\end_inset 
+
+, the printing in Knuth's 
+\emph on 
+Digital Typography
+\emph default 
+\SpecialChar ~
+
+\begin_inset LatexCommand \cite{DigTyp}
+
+\end_inset 
+
+ is heavier than the digital version or from a laser printer.
+\layout Standard
+
+Type\SpecialChar ~
+1 versions of Computer Modern from Blue Sky Research and Y&Y, Inc.
+ have been made freely available by the American Mathematical Society (AMS)
+ and a collection of publishers and other technical companies\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbluesky,bluesky}
+
+\end_inset 
+
+.
+ Basil K.
+ Malyshev has also released a free Type\SpecialChar ~
+1 version of Computer Modern\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbakoma}
+
+\end_inset 
+
+, originally for use with his TeX system BaKoMa TeX.
+\layout Standard
+
+Computer Modern has been extended to include more characters, particularly
+ for non-English European languages.
+ These fonts include European Computer Modern by J
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+"o
+\end_inset 
+
+rg Knappen and Norbert Schwarz (
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\backslash 
+ 
+\end_inset 
+
+ only) 
+\begin_inset LatexCommand \cite{CTANec}
+
+\end_inset 
+
+; Tt2001 by Szab
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+ P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'e
+\end_inset 
+
+ter (converted into Type\SpecialChar ~
+1 format from 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\backslash 
+ 
+\end_inset 
+
+ sources using 
+\family typewriter 
+textrace
+\family default 
+; Tt2001 has been superseded by CM-Super, which P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'e
+\end_inset 
+
+ter recommends) 
+\begin_inset LatexCommand \cite{textrace,CTANtt2001}
+
+\end_inset 
+
+; CM-Super by Vladimir Volovich (also converted using 
+\family typewriter 
+textrace
+\family default 
+) 
+\begin_inset LatexCommand \cite{CM-Super,CTANcm-super}
+
+\end_inset 
+
+; and Latin Modern by Bogus
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+aw Jackowski and Janusz M.
+ Nowacki (extended from the Blue Sky AMS fonts using MetaType1) 
+\begin_inset LatexCommand \cite{LatinModern,CTANlm}
+
+\end_inset 
+
+.
+ 
+\layout Standard
+
+The SliTeX font (
+\family typewriter 
+lcmss
+\family default 
+) is a sans serif text face that has wide letters and high 
+\emph on 
+x
+\emph default 
+ height.
+ Its high readability makes it extremely suitable for slide presentations.
+ However, there is no matching math font.
+ SliTeX sans serif can be set as the primary text font using TeXPower's
+ 
+\family typewriter 
+tpslifonts.sty
+\family default 
+\SpecialChar ~
+
+\begin_inset LatexCommand \cite{texpower}
+
+\end_inset 
+
+.
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Computer Modern]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:CM}
+
+\end_inset 
+
+Computer Modern (using the Blue Sky and Y&Y Type\SpecialChar ~
+1 fonts; no package necessary).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{cm}
+\end_inset 
+
+
+\end_inset 
+
+ 
+\layout Paragraph
+
+Computer Modern Bright: 
+\layout Standard
+
+This a sans serif font with corresponding math font derived from Computer
+ Modern by Walter A.
+ Schmidt 
+\begin_inset LatexCommand \cite{CTANcmbright}
+
+\end_inset 
+
+.
+ CM-Super contains Type\SpecialChar ~
+1 versions of the text fonts in T1 encoding, and
+ Harald Harders created Type\SpecialChar ~
+1 versions of the text and math fonts called
+ 
+\family typewriter 
+hfbright
+\family default 
+\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANhfbright}
+
+\end_inset 
+
+ using 
+\family typewriter 
+mftrace
+\family default 
+.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[CM Bright]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:CMBright}
+
+\end_inset 
+
+CM Bright (
+\family typewriter 
+
+\backslash 
+usepackage{cmbright}
+\family default 
+; output uses the 
+\family typewriter 
+hfbright
+\family default 
+ fonts).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{cmbright}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Concrete and Euler or Concrete Math:
+\layout Standard
+
+The Concrete font was created by Knuth for his book 
+\emph on 
+Concrete Mathematics
+\emph default 
+\SpecialChar ~
+
+\begin_inset LatexCommand \cite{concretebook}
+
+\end_inset 
+
+.
+ Hermann Zapf was commissioned by the AMS to create the math font Euler
+ for use in 
+\emph on 
+Concrete Mathematics
+\emph default 
+.
+ Type\SpecialChar ~
+1 versions of Concrete in T1 encoding are available in the CM-Super
+ collection\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANcm-super}
+
+\end_inset 
+
+, and Type\SpecialChar ~
+1 versions of Euler are available in the Blue Sky collection from
+ the AMS\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbluesky}
+
+\end_inset 
+
+ and in the BaKoMa collection\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbakoma}
+
+\end_inset 
+
+.
+ The 
+\family typewriter 
+eulervm
+\family default 
+ package by Walter Schmidt\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANeulervm,eulervm}
+
+\end_inset 
+
+ implements virtual fonts for Euler that are more efficient to use with
+ LaTeX.
+ Ulrik Vieth created the Concrete Math fonts\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANconcmath}
+
+\end_inset 
+
+ to match the Concrete text fonts; the only free versions are implemented
+ in 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\end_inset 
+
+.
+ The 
+\family typewriter 
+ccfonts
+\family default 
+ package by Walter Schmidt\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANccfonts}
+
+\end_inset 
+
+ changes the text font to Concrete and changes the math font to the Concrete
+ Math fonts if 
+\family typewriter 
+eulervm
+\family default 
+ is not loaded.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Concrete and Euler]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:ConcEuler}
+
+\end_inset 
+
+Concrete text with Euler math (
+\family typewriter 
+
+\backslash 
+usepackage{ccfonts,eulervm} 
+\backslash 
+usepackage[T1]{fontenc}
+\family default 
+).
+ Note that Concrete does not have a bold font, so Computer Modern is used
+ instead.
+ Non-bold text output uses the CM-Super Concrete fonts.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{concrete}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Concrete Math]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:ConcMath}
+
+\end_inset 
+
+Concrete text with Concrete math (
+\family typewriter 
+
+\backslash 
+usepackage{ccfonts} 
+\backslash 
+usepackage[T1]{fontenc}
+\family default 
+).
+ Note that Concrete does not have a bold font, so Computer Modern is used
+ instead.
+ Non-bold text output uses the CM-Super Concrete fonts.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{concmath}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Iwona and Kurier:
+\layout Standard
+
+The fonts Iwona and Kurier were created by J.
+ M.
+ Nowacki\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANiwona,CTANkurier}
+
+\end_inset 
+
+ using the MetaType1 system based on typefaces by the Polish typographer
+ Ma
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+gorzata Budyta.
+ The two fonts are very similar, except that Kurier avoids 
+\begin_inset Quotes eld
+\end_inset 
+
+ink traps
+\begin_inset Quotes erd
+\end_inset 
+
+ with gaps in its strokes.
+ The packages have complete math support in both TeX and LaTeX.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Iwona]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Iwona}
+
+\end_inset 
+
+Iwona text and math (
+\family typewriter 
+
+\backslash 
+usepackage[math]{iwona}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{iwona}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Kurier]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Kurier}
+
+\end_inset 
+
+Kurier text and math (
+\family typewriter 
+
+\backslash 
+usepackage[math]{kurier}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{kurier}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Antykwa P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+tawskiego:
+\layout Standard
+
+J.
+ M.
+ Nowacki created the font Antykwa P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+tawskiego\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANantp}
+
+\end_inset 
+
+ using the MetaType1 system based on a typeface by Polish typographer Adam
+ P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\backslash 
+l{}
+\end_inset 
+
+tawski.
+ The package 
+\family typewriter 
+antpolt
+\family default 
+ has no math support at this time, and requires the encoding to be set to
+ QX or OT4.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Antykwa P
+\backslash 
+'o
+\backslash 
+l{}tawskiego]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:AntPolt}
+
+\end_inset 
+
+Antykwa P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+tawskiego text (
+\family typewriter 
+
+\backslash 
+usepackage{antpolt}
+\family default 
+ and 
+\family typewriter 
+
+\backslash 
+usepackage[QX]{fontenc}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{antpolt}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Antykwa Toru
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+acuten{}
+\end_inset 
+
+ska:
+\layout Standard
+
+The font Antykwa Toru
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+acuten{}
+\end_inset 
+
+ska was created by J.
+ M.
+ Nowacki\SpecialChar ~
+
+\begin_inset LatexCommand \cite{AntTorunska,CTANantt}
+
+\end_inset 
+
+ using the MetaType1 system based on a typeface by the Polish typographer
+ Zygfryd Gardzielewski.
+ The package 
+\family typewriter 
+anttor
+\family default 
+ has complete math support in both TeX and LaTeX.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Antykwa Toru
+\backslash 
+'nska]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:AntTor}
+
+\end_inset 
+
+Antykwa Toru
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+acuten{}
+\end_inset 
+
+ska text and math (
+\family typewriter 
+
+\backslash 
+usepackage[math]{anttor}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{anttor}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Section
+
+
+\begin_inset LatexCommand \label{sec:PSFonts}
+
+\end_inset 
+
+Core Postscript Fonts
+\layout Standard
+
+When Adobe introduced Postscript in 1984, they defined 35 core fonts (in
+ 10 typefaces) that must be present in all Postscript interpreters.
+ In 1996, URW++ released a replacement set for the core fonts under the
+ GNU General Public License.
+ The URW++ fonts were primarily released for use with Ghostscript, a free
+ Postscript interpreter.
+ Table\SpecialChar ~
+
+\begin_inset LatexCommand \ref{cap:CorePostscriptFonts}
+
+\end_inset 
+
+ lists the original Postscript fonts, along with the URW++/Ghostscript equivalen
+ts.
+ Each font can be used as the default text font by selecting the indicated
+ LaTeX package from the PSNFSS distribution\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANpsnfss}
+
+\end_inset 
+
+.
+\begin_inset Float table
+wide false
+collapsed true
+
+\layout Standard
+\align center 
+
+\begin_inset  Tabular
+<lyxtabular version="3" rows="11" columns="4">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Adobe Postscript
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+URW++/Ghostscript
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+# of fonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+package
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Avant Garde
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+URW Gothic L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+4
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+avant
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Bookman
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+URW Bookman L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+4
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+bookman
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Courier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Nimbus Mono L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+4
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+courier
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Helvetica
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Nimbus Sans L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+8
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+helvet
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+New Century Schoolbook
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Century Schoolbook L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+4
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+newcent
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Palatino
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+URW Palladio L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+4
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+palatino
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Symbol
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Standard Symbols L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+1
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+---
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Times
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Nimbus Roman No.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+ 
+\end_inset 
+
+9 L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+4
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+times
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Zapf Chancery
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+URW Chancery L
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+1
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+chancery
+\end_inset 
+</cell>
+</row>
+<row bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Zapf Dingbats
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Dingbats
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+1
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+---
+\end_inset 
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset 
+
+
+\layout Standard
+\align center 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Core Postscript fonts]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{cap:CorePostscriptFonts}
+
+\end_inset 
+
+Core Postscript fonts and URW++/Ghostscript equivalents.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\end_inset 
+
+ 
+\layout Paragraph
+
+Avant Garde and Kerkis Sans:
+\layout Standard
+
+The font Kerkis Sans was created by Antonis Tsolomitis\SpecialChar ~
+
+\begin_inset LatexCommand \cite{Kerkis,CTANkerkis}
+
+\end_inset 
+
+ by extending Avant Garde to include Greek and additional Latin characters.
+ The resulting fonts are stand-alone and can be used by applications outside
+ of TeX.
+ The package 
+\family typewriter 
+kerkis
+\family default 
+ sets the sans serif font to Kerkis Sans; there is no package option to
+ set Kerkis Sans to be the primary text font.
+\layout Paragraph
+
+Bookman and Kerkis:
+\layout Standard
+
+The font Kerkis was created by Antonis Tsolomitis\SpecialChar ~
+
+\begin_inset LatexCommand \cite{Kerkis,CTANkerkis}
+
+\end_inset 
+
+ by extending URW Bookman\SpecialChar ~
+L to include Greek and additional Latin characters.
+ The resulting fonts are stand-alone and can be used by applications outside
+ of TeX.
+ A font of math symbols is included, but not used by the LaTeX package.
+ The package 
+\family typewriter 
+kmath
+\family default 
+ uses txfonts for math symbols and uppercase Greek letters.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Kerkis]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Kerkis}
+
+\end_inset 
+
+Kerkis text and math (
+\family typewriter 
+
+\backslash 
+usepackage{kmath,kerkis}
+\family default 
+; the order of the packages matters, since 
+\family typewriter 
+kmath
+\family default 
+ loads the 
+\family typewriter 
+txfonts
+\family default 
+ package which changes the default text font).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{kerkis}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+New Century Schoolbook and Millennial or fouriernc: 
+\layout Standard
+
+The Millennial math font of the current author contains Greek letters and
+ other letter-like mathematical symbols.
+ A set of virtual fonts is provided that uses New Century Schoolbook for
+ Latin letters in math, Millennial for Greek and other letter-like symbols,
+ and txfonts and Computer Modern for all other symbols, including binary
+ operators, relations, and large symbols.
+ This font is still in development, but will hopefully be released in 2006.
+ The 
+\family typewriter 
+fouriernc
+\family default 
+ package of Michael Zedler\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANfouriernc}
+
+\end_inset 
+
+ uses New Century Schoolbook for text and Latin letters in mathematics,
+ and the Greek and symbol fonts from the Fourier-GUTenberg package for the
+ remaining mathematical symbols.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Millennial]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Millen}
+
+\end_inset 
+
+New Century Schoolbook with Millennial math 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captionbreak 
+\end_inset 
+
+(
+\family typewriter 
+
+\backslash 
+usepackage{millennial}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{millennial}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[fouriernc]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:fouriernc}
+
+\end_inset 
+
+New Century Schoolbook with Fourier math 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captionbreak 
+\end_inset 
+
+(
+\family typewriter 
+
+\backslash 
+usepackage{fouriernc}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{fouriernc}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Palatino and pxfonts, Pazo, or mathpple:
+\layout Standard
+
+Young Ryu created the pxfonts collection\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANpxfonts}
+
+\end_inset 
+
+, which contains Greek and other letter-like symbols, as well as a complete
+ set of geometric symbols, including the AMS symbols.
+ Diego Puga created the Pazo math fonts, which include the Greek letters
+ and other letter-like symbols in a style that matches Palatino.
+ The LaTeX package 
+\family typewriter 
+mathpazo
+\family default 
+ (now part of PSNFSS\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANpsnfss}
+
+\end_inset 
+
+) uses Palatino for Latin letters, Pazo for Greek and other letter-like
+ symbols, and Computer Modern for geometric symbols.
+ The LaTeX package 
+\family typewriter 
+mathpple
+\family default 
+ (also part of PSNFSS\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANpsnfss}
+
+\end_inset 
+
+) uses Palatino for Latin letters and slanted Euler for Greek and other
+ symbols.
+ Since Hermann Zapf designed both Palatino and Euler, the designs mesh well.
+ An alternate use of Euler is using the 
+\family typewriter 
+eulervm
+\family default 
+ package.
+ Ralf Stubner added small caps and old-style figures to URW Palladio L in
+ the FPL package\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANfpl}
+
+\end_inset 
+
+, and Walter Schmidt extended these fonts in the FPL Neu package\SpecialChar ~
+
+\begin_inset LatexCommand \cite{fplneu}
+
+\end_inset 
+
+.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[pxfonts]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:pxfonts}
+
+\end_inset 
+
+Palatino text with pxfonts math (
+\family typewriter 
+
+\backslash 
+usepackage{pxfonts}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{pxfonts}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Pazo]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Pazo}
+
+\end_inset 
+
+Palatino text with Pazo math (
+\family typewriter 
+
+\backslash 
+usepackage{mathpazo}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{pazo}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[mathpple]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:mathpple}
+
+\end_inset 
+
+Palatino text with Euler math (
+\family typewriter 
+
+\backslash 
+usepackage{mathpple}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{mathpple}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Times and txfonts, Belleek, mathptmx, or mbtimes:
+\layout Standard
+
+Young Ryu created the txfonts collection\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANtxfonts}
+
+\end_inset 
+
+, which contains Greek and other letter-like symbols, as well as a complete
+ set of geometric symbols, including the AMS symbols.
+ The 
+\family typewriter 
+txfonts
+\family default 
+ package also includes a very nice typewriter font, 
+\family typewriter 
+txtt
+\family default 
+.
+ Belleek was created by Richard Kinch\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbelleek,Belleek}
+
+\end_inset 
+
+ and is a drop-in replacement for the commercial fonts required by the 
+\family typewriter 
+mathtime
+\family default 
+ package (now part of PSNFSS\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANpsnfss}
+
+\end_inset 
+
+).
+ The LaTeX package 
+\family typewriter 
+mathptmx
+\family default 
+ (also part of PSNFSS\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANpsnfss}
+
+\end_inset 
+
+) uses Times for Latin letters and Symbol for Greek and other symbols.
+ Michel Bovani created the 
+\family typewriter 
+mbtimes
+\family default 
+ package by using Omega Serif for text and Latin and Greek letters in mathematic
+s.
+ 
+\family typewriter 
+mbtimes
+\family default 
+ also includes symbol fonts and a set of calligraphic letters.
+ Omega Serif is the primary font for Omega, a 16-bit extension of TeX by
+ John Plaice and Yannis Haralambous\SpecialChar ~
+
+\begin_inset LatexCommand \cite{Omega}
+
+\end_inset 
+
+.
+\layout Standard
+
+The STIX fonts project\SpecialChar ~
+
+\begin_inset LatexCommand \cite{STIX}
+
+\end_inset 
+
+ is a collaboration of several academic publishers to create a set of Times-comp
+atible fonts containing every possible glyph needed for mathematical and
+ technical publishing.
+ These fonts are still in development, with a scheduled release in the middle
+ of 2006.
+\layout Standard
+
+Note that Adobe Reader 7.0 replaces Times with Adobe Serif MM if Times or
+ the Ghostscript equivalent Nimbus Roman No.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+ 
+\end_inset 
+
+9 L is not embedded in the PDF file.
+ Adobe Serif MM only has an oblique version, not a real italics, and thus,
+ the primary text and Latin letters in mathematics will not match letters
+ taken from additional fonts.
+ This problem can be avoided by embedding Times or the Ghostscript equivalent
+ Nimbus Roman No.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+ 
+\end_inset 
+
+9 L into the PDF file.
+ Also, I have heard (but not personally verified) that the Windows version
+ of Adobe Reader displays Times New Roman when Times is not embedded.
+ The upright versions of the two typefaces are very similar, but the italics
+ are noticeably different (consider the 
+\emph on 
+z
+\emph default 
+, for instance).
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[txfonts]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:txfonts}
+
+\end_inset 
+
+Times text with txfonts math (
+\family typewriter 
+
+\backslash 
+usepackage[varg]{txfonts}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{txfonts}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Belleek]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Belleek}
+
+\end_inset 
+
+Times text with Belleek math (
+\family typewriter 
+
+\backslash 
+usepackage{mathtime}
+\family default 
+; output uses the Belleek fonts).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{belleek}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[mathptmx]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:mathptmx}
+
+\end_inset 
+
+Times text with Symbol math (
+\family typewriter 
+
+\backslash 
+usepackage{mathptmx}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{mathptmx}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[mbtimes]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:mbtimes}
+
+\end_inset 
+
+Omega Serif text with Omega math (
+\family typewriter 
+
+\backslash 
+usepackage{mbtimes}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{mbtimes}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+\added_space_top bigskip 
+Helvetica, Courier, and Zapf Chancery do not have matching math fonts.
+ Courier and Zapf Chancery are inappropriate for mathematics anyway, but
+ Helvetica is sometimes used for presentations and posters.
+ The free fonts MgOpenModerna\SpecialChar ~
+
+\begin_inset LatexCommand \cite{MgOpenModerna}
+
+\end_inset 
+
+ and FreeSans\SpecialChar ~
+
+\begin_inset LatexCommand \cite{FreeSans}
+
+\end_inset 
+
+ would be natural choices for the Greek letters in a Helvetica mathematics
+ font.
+\layout Section
+
+
+\begin_inset LatexCommand \label{sec:OtherFonts}
+
+\end_inset 
+
+Other Free Fonts
+\layout Standard
+
+Several other fonts have been released for use with free open-source software.
+ LaTeX packages have been created for most of these fonts.
+\layout Paragraph
+
+Bitstream Vera Sans and Arev Sans:
+\layout Standard
+
+Bitstream Vera was released by Bitstream in cooperation with the Gnome Foundatio
+n\SpecialChar ~
+
+\begin_inset LatexCommand \cite{vera}
+
+\end_inset 
+
+ as a high quality scalable free font for use with free open-source software.
+ Bitstream Vera serif, sans serif, and sans mono are available in text using
+ the 
+\family typewriter 
+bera
+\family default 
+ package by Malte Rosenau and Walter\SpecialChar ~
+A.
+ Schmidt\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbera}
+
+\end_inset 
+
+.
+ Tavmjong Bah created Arev Sans\SpecialChar ~
+
+\begin_inset LatexCommand \cite{arev}
+
+\end_inset 
+
+ by extending Bitstream Vera Sans to include Greek, Cyrillic, and many mathemati
+cal symbols.
+ The current author created the LaTeX package 
+\family typewriter 
+arev
+\family default 
+\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANarev}
+
+\end_inset 
+
+ using Arev Sans for text and math letters and bold Math Design fonts for
+ Bitstream Charter for symbols.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Arev Sans]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Arev}
+
+\end_inset 
+
+Arev Sans text with Arev math (
+\family typewriter 
+
+\backslash 
+usepackage{arev}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{arev}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Bitstream Charter and Math Design:
+\layout Standard
+
+Bitstream Charter\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANcharter}
+
+\end_inset 
+
+ was donated by Bitstream for use with X Windows.
+ The Math Design fonts for Bitstream Charter created by Paul Pichaureau\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANmathdesign}
+
+\end_inset 
+
+ are very complete, including Greek letters, symbols from Computer Modern,
+ and the AMS symbols.
+ Charis SIL\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CharisSIL}
+
+\end_inset 
+
+ might be an alternate source for Greek letters that match Bitstream Charter
+ more closely.
+ Another possibility for a math font is to use the Euler fonts with the
+ 
+\family typewriter 
+charter
+\family default 
+ and 
+\family typewriter 
+eulervm
+\family default 
+ packages.
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Math Design for Charter]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:chartermd}
+
+\end_inset 
+
+Bitstream Charter text with Math Design math 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captionbreak 
+\end_inset 
+
+(
+\family typewriter 
+
+\backslash 
+usepackage[charter]{mathdesign}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{chartermd}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Comic Sans:
+\layout Standard
+
+Comic Sans is one of Microsoft's core web fonts that is freely available\SpecialChar ~
+
+\begin_inset LatexCommand \cite{comicsans}
+
+\end_inset 
+
+.
+ The 
+\family typewriter 
+comicsans
+\family default 
+ package by Scott Pakin\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANcomicsans}
+
+\end_inset 
+
+ implements Comic Sans as both the primary text font and the Latin and Greek
+ letters in mathematics.
+ Computer Modern is used for geometric symbols that are not present in Comic
+ Sans.
+ Comic Sans is hard to read for large blocks of text, but might be nice
+ to use for short comments in a handwriting style.
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Comic Sans]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:comicsans}
+
+\end_inset 
+
+Comic Sans text and math (
+\family typewriter 
+
+\backslash 
+usepackage{comicsans}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{comicsans}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Comment
+
+Gentium not released yet.
+\begin_deeper 
+\layout Paragraph
+
+Gentium: 
+\layout Standard
+
+Gentium was designed by Victor Gaultney\SpecialChar ~
+
+\begin_inset LatexCommand \cite{Gentium}
+
+\end_inset 
+
+ to be suitable for any language that uses a Latin-based script.
+ Gentium was released by SIL under the Open Font License.
+ Michael Zedler converted Gentium to Type\SpecialChar ~
+1 format and produced a LaTeX package\SpecialChar ~
+
+\begin_inset LatexCommand \cite{Gentiumtex}
+
+\end_inset 
+
+
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+This package is currently in development; when completed it will presumably
+ be posted somewhere more official.
+\end_inset 
+
+ for its use; the mathematics uses Gentium for Latin and Greek letters and
+ MnSymbol for geometric symbols.
+ 
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Gentium]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:Gentium}
+
+\end_inset 
+
+Gentium text with Gentium math (
+\family typewriter 
+
+\backslash 
+usepackage{gentium}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{gentium}
+\end_inset 
+
+
+\end_inset 
+
+
+\end_deeper 
+\layout Paragraph
+
+URW Garamond and Math Design: 
+\layout Standard
+
+URW Garamond No.\SpecialChar ~
+8\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANgaramond}
+
+\end_inset 
+
+ is available under the Aladdin Free Public License as part of the GhostPCL
+ project.
+ The Math Design fonts for URW Garamond created by Paul Pichaureau\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANmathdesign}
+
+\end_inset 
+
+ are very complete, including Greek letters, symbols from Computer Modern,
+ and the AMS symbols.
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Math Design for Garamond]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:garamd}
+
+\end_inset 
+
+URW Garamond text with Math Design math 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captionbreak 
+\end_inset 
+
+(
+\family typewriter 
+
+\backslash 
+usepackage[garamond]{mathdesign}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{garamondmd}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Paragraph
+
+Utopia and Fourier or Math Design:
+\layout Standard
+
+Utopia\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANutopia}
+
+\end_inset 
+
+ was donated by Adobe for use with X Windows.
+ Michel Bovani created Fourier-GUTenberg\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANfourier}
+
+\end_inset 
+
+ as an accompaniment to Utopia and is very complete, containing both Greek
+ letters and standard and AMS symbols.
+ The Math Design fonts for Utopia of Paul Pichaureau\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANmathdesign}
+
+\end_inset 
+
+ are also very complete, including Greek letters and AMS symbols.
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Fourier-GUTenberg]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:fourier}
+
+\end_inset 
+
+Utopia text with Fourier-GUTenberg math (
+\family typewriter 
+
+\backslash 
+usepackage{fourier}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{fourier}
+\end_inset 
+
+
+\end_inset 
+
+
+\begin_inset Float figure
+wide true
+collapsed true
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Math Design for Utopia]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{fig:utopiamd}
+
+\end_inset 
+
+Utopia text with Math Design math 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captionbreak 
+\end_inset 
+
+(
+\family typewriter 
+
+\backslash 
+usepackage[utopia]{mathdesign}
+\family default 
+).
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+pic{utopiamd}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+\added_space_top bigskip 
+Using 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\end_inset 
+
+, Achim Blumensath created the package 
+\family typewriter 
+MnSymbol
+\family default 
+\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANmnsymbol}
+
+\end_inset 
+
+, which contains geometric symbols (no Greek or other letter-like symbols)
+ in varying optical sizes that match the commercial font Adobe MinionPro.
+ The 
+\family typewriter 
+MnSymbol
+\family default 
+ package also contains traced Type\SpecialChar ~
+1 versions.
+ 
+\family typewriter 
+MnSymbol
+\family default 
+ is free; however the package 
+\family typewriter 
+MinionPro
+\family default 
+ of Achim Blumensath, Andreas B
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+"u
+\end_inset 
+
+hmann, and Michael Zedler\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANminionpro}
+
+\end_inset 
+
+ which uses 
+\family typewriter 
+MnSymbol
+\family default 
+ requires a license from Adobe for the font MininonPro.
+\layout Section
+
+
+\begin_inset LatexCommand \label{sec:Compar}
+
+\end_inset 
+
+Comparison of Features
+\layout Standard
+
+Table\SpecialChar ~
+
+\begin_inset LatexCommand \ref{cap:FeatureComparison}
+
+\end_inset 
+
+ shows a comparison of the different features in each package.
+ The only packages that have optical sizes are Computer Modern, CM Bright,
+ Concrete, Euler, and MnSymbol.
+ Except for when the 
+\family typewriter 
+eulervm
+\family default 
+ package is used, Latin math letters are taken from the italic text font.
+ An asterisk after a font name indicates that the package has a version
+ of that style in its own font files.
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+begin{sidewaystable}
+\backslash 
+centering
+\backslash 
+small
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset  Tabular
+<lyxtabular version="3" rows="24" columns="8">
+<features>
+<column alignment="left" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\begin_inset Formula $\;$
+\end_inset 
+
+Package
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Text
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Greek
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+CM sym
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+AMS sym
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Calligr
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Blkbd
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+boldmath
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+computer modern
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cmbright
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cmbright
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cmbright
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+no
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ccfonts,eulervm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concrete
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+euler
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+euler
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+euler
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concmath
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concrete
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concrete
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concmath
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concmath
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concmath
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+concmath
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+no
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+iwona
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+iwona
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+iwona
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+iwona
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+iwona
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kurier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kurier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kurier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kurier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kurier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+anttor
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+anttor
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+anttor
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+anttor
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+anttor
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+anttor
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kmath,kerkis
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kerkis
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+kerkis
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+millennial
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+nc schlbk
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+millennial
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+no
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fouriernc
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+nc schlbk
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+pxfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+palatino
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+pxfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+pxfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathpazo
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+palatino
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+pazo
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+pazo
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathpple
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+palatino
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+euler
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+euler
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+times
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+txfonts
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathtime (Belleek)
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+times
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+belleek
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+belleek
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+no
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathptmx
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+times
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+symbol
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+rsfs
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+no
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mbtimes
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+omega
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+omega
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mbtimes
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+rsfs*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+esstix
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+arev
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+arev
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+arev
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md charter
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md charter
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathdesign (Charter)
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+charter
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md charter
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md charter
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md charter
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+rsfs*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+comicsans
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+comicsans
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+comicsans
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+cm
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathdesign (Garamond)
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+garamond
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md garamond
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md garamond
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md garamond
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+rsfs*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+utopia
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+fourier
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+<row bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+mathdesign (Utopia)
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+utopia
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md garamond
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md utopia
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+md utopia
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+rsfs*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+ams*
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+yes
+\end_inset 
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset 
+
+
+\layout Standard
+\align center 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Comparison of features]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{cap:FeatureComparison}
+
+\end_inset 
+
+Comparison of the features of different packages.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+end{sidewaystable}
+\end_inset 
+
+
+\layout Standard
+
+The only sans serif fonts with matching math fonts are CM Bright and Arev
+ Sans.
+ Both work well for presentations.
+ Computer Modern sans serif, CM Bright, Arev Sans, Bera Sans, Kerkis Sans,
+ Helvetica, and Avant Garde all work well as sans serif fonts that accompany
+ a primary roman font.
+ Computer Modern typewriter, 
+\family typewriter 
+txtt
+\family default 
+ (from txfonts), Luxi Mono\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANluximono}
+
+\end_inset 
+
+, and Bera Mono all work well as typewriters fonts.
+\layout Standard
+
+There are several other free fonts easily used in LaTeX, notably the Bera
+ fonts, Luxi Mono, and efont-serif\SpecialChar ~
+
+\begin_inset LatexCommand \cite{efont-serif}
+
+\end_inset 
+
+.
+ Malte Rosenau converted the Bitstream Vera fonts into Type\SpecialChar ~
+1 format, renaming
+ the fonts to Bera\SpecialChar ~
+
+\begin_inset LatexCommand \cite{CTANbera}
+
+\end_inset 
+
+.
+ Bera includes serif, sans, and mono.
+ Bera Serif does not have a matching italic font, but the DejaVu fonts\SpecialChar ~
+
+\begin_inset LatexCommand \cite{dejavu}
+
+\end_inset 
+
+ are an extension of Bitstream Vera that include a true serif italic, as
+ well as Greek and Cyrillic for all three styles.
+ Except for Bera Sans and Arev Sans, none of the previous fonts have matching
+ math fonts.
+\layout Section
+
+
+\begin_inset LatexCommand \label{sec:Creation}
+
+\end_inset 
+
+Creation of this Survey
+\layout Standard
+
+It might be technically feasible to create a font survey such as this article
+ as a single TeX document.
+ This document, however, was not created in that fashion for two reasons.
+ First, it would be an inordinate amount of work to switch between fonts
+ within the same document.
+ The authors of the LaTeX packages put in a considerable amount of effort
+ to set up the fonts for a document, and it would be silly to duplicate
+ their work.
+ Second, we want to show to a reader exactly what he or she will get by
+ using that package.
+\layout Standard
+
+In order to accomplish these goals, a small LaTeX file (see Figure\SpecialChar ~
+
+\begin_inset LatexCommand \ref{cap:SampleLaTeXfile}
+
+\end_inset 
+
+ for an example) was made for each font that loaded the appropriate packages
+ and then loaded a common text fragment for display.
+ Each file was LaTeXed and then converted to an EPS file using 
+\family typewriter 
+dvips
+\family default 
+ with the -E option.
+ The -E option creates a tight bounding box around the text.
+ The main file 
+\family typewriter 
+survey.tex
+\family default 
+ then included each of these graphics, and was compiled with 
+\family typewriter 
+pdflatex
+\family default 
+.
+ For some reason, 
+\family typewriter 
+dvips
+\family default 
+ created an unusable one-page PS file when including 
+\family typewriter 
+mbtimes.eps
+\family default 
+.
+ HeVeA was used to convert 
+\family typewriter 
+survey.tex
+\family default 
+ directly to HTML.
+\begin_inset Float figure
+wide false
+collapsed true
+
+\layout Quote
+
+
+\family typewriter 
+
+\backslash 
+documentclass{article}
+\newline 
+
+\backslash 
+include{sampleformat}
+\newline 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hspace*{.01em}
+\end_inset 
+
+\SpecialChar ~
+\SpecialChar ~
+
+\backslash 
+usepackage{fourier}
+\newline 
+
+\backslash 
+begin{document}
+\newline 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+hspace*{.01em}
+\end_inset 
+
+\SpecialChar ~
+\SpecialChar ~
+
+\backslash 
+include{textfragment}
+\newline 
+
+\backslash 
+end{document}
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+captiontitle[Sample 
+\backslash 
+LaTeX{} file]{
+\end_inset 
+
+
+\begin_inset LatexCommand \label{cap:SampleLaTeXfile}
+
+\end_inset 
+
+Sample LaTeX file for 
+\family typewriter 
+fourier
+\family default 
+.
+ The file 
+\family typewriter 
+sampleformat.tex
+\family default 
+ contains page layout commands, such as setting the margins and removing
+ the page numbers.
+ The file 
+\family typewriter 
+textfragment.tex
+\family default 
+ contains the text and mathematics fragment to be displayed.
+ Both included files are used by every sample LaTeX file.
+ The line 
+\begin_inset Quotes eld
+\end_inset 
+
+
+\family typewriter 
+
+\backslash 
+usepackage{fourier}
+\family default 
+
+\begin_inset Quotes erd
+\end_inset 
+
+ was changed for each sample to the package listed in the sample's caption.
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Subsection*
+
+Acknowledgements
+\layout Standard
+
+Thanks to Michael Zedler, Ulrik Vieth, Karl Berry, William Slough, and the
+ anonymous referees for helpful comments.
+\layout Bibliography
+\bibitem {CTANfontinstgd}
+
+Philipp Lehman, The Font Installation Guide on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/info/Type1fonts/fontinstallationguide}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANmetatype1}
+
+Bogus
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+aw Jackowski, Janusz M.
+ Nowacki, and Piotr Strzelczyk, MetaType1 on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/utilities/metatype1}
+\end_inset 
+
+
+\layout Bibliography
+\bibitem {WASmathfonts}
+
+Walter A.
+ Schmidt, Mathematikschriften f
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+"u
+\end_inset 
+
+r LaTeX, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://home.vr-web.de/was/mathfonts.html}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {bluesky}
+
+American Mathematical Society (AMS) webpage for Computer Modern Type\SpecialChar ~
+1 fonts,
+ 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.ams.org/tex/type1-fonts.html}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CMBook}
+
+Donald E.
+ Knuth, 
+\emph on 
+Computer Modern Typefaces
+\emph default 
+, Addison-Wesley Pub.
+ Co., 1986.
+\layout Bibliography
+\bibitem {CMRgain}
+
+Raph Levien, Effect of gain on appearance of Computer Modern, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://levien.com/type/cmr/gain.html}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {DigTyp}
+
+Donald E.
+ Knuth, 
+\emph on 
+Digital Typography
+\emph default 
+, Stanford, California: Center for the Study of Language and Information,
+ 1999.
+\layout Bibliography
+\bibitem {CTANbluesky}
+
+Blue Sky Research and Y&Y, Inc., Computer Modern Type\SpecialChar ~
+1 fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/cm/ps-type1/bluesky}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANbakoma}
+
+Basil K.
+ Malyshev, BaKoMa Computer Modern Type\SpecialChar ~
+1 and TrueType fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/cm/ps-type1/bakoma}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANec}
+
+J
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+"o
+\end_inset 
+
+rg Knappen and Norbert Schwarz, European Computer Modern fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/ec}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANtt2001}
+
+Szab
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+ P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'e
+\end_inset 
+
+ter, Tt2001 fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/ps-type1/tt2001}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {textrace}
+
+Szab
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+ P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'e
+\end_inset 
+
+ter, webpage for 
+\family typewriter 
+textrace
+\family default 
+ and Tt2001 fonts, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.inf.bme.hu/~pts/textrace}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANcm-super}
+
+Vladimir Volovich, CM-Super on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/ps-type1/cm-super}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CM-Super}
+
+Vladimir Volovich, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+TUGboat{tb24-1/volovich.pdf}{
+\end_inset 
+
+CM-Super
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+: Automatic creation of efficient Type\SpecialChar ~
+1 fonts from 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\backslash 
+ 
+\end_inset 
+
+ fonts, 
+\emph on 
+TUGboat
+\emph default 
+, 24 (1) 2003, 75--78.
+\layout Bibliography
+\bibitem {CTANlm}
+
+Bogus
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+aw Jackowski and Janusz M.
+ Nowacki, Latin Modern on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/ps-type1/lm}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {LatinModern}
+
+Bogus
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+aw Jackowski and Janusz M.
+ Nowacki, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+TUGboat{tb24-1/jackowski.pdf}{
+\end_inset 
+
+Latin Modern
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+: Enhancing Computer Modern with accents, accents, accents,
+\emph on 
+ TUGboat
+\emph default 
+, 24 (1) 2003, 64--74.
+\layout Bibliography
+\bibitem {texpower}
+
+TeXPower LaTeX style files by Stephan Lehmke, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://texpower.sourceforge.net}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANcmbright}
+
+Walter A.
+ Schmidt, CM Bright on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/cmbright}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANhfbright}
+
+Harald Harders, hfbright on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/ps-type1/hfbright}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {concretebook}
+
+Ronald L.
+ Graham, Donald E.
+ Knuth, and Oren Patashnik, 
+\emph on 
+Concrete Mathematics,
+\emph default 
+ Addison-Wesley, 1989.
+\layout Bibliography
+\bibitem {CTANconcmath}
+
+Ulrik Vieth, Concrete Math fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/concmath}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANccfonts}
+
+Walter Schmidt, ccfonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/macros/latex/contrib/ccfonts}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANeulervm}
+
+Walter Schmidt, eulervm on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/eulervm}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {eulervm}
+
+Walter Schmidt, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+TUGboat{tb23-3-4/tb75schmidt.pdf}{
+\end_inset 
+
+Euler-VM
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+: Generic math fonts for use with LaTeX, 
+\emph on 
+TUGboat
+\emph default 
+, 23 (3/4) 2002, 301--303.
+\layout Bibliography
+\bibitem {CTANiwona}
+
+Janusz M.
+ Nowacki, Iwona on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/iwona}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANkurier}
+
+Janusz M.
+ Nowacki, Kurier on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/kurier}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANantp}
+
+Janusz M.
+ Nowacki, Antykwa P
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+'o
+\end_inset 
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+l{}
+\end_inset 
+
+tawskiego on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/psfonts/polish/antp}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANantt}
+
+Janusz M.
+ Nowacki, Antykwa Toru
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+acuten{}
+\end_inset 
+
+ska on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/antt}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {AntTorunska}
+
+Janusz M.
+ Nowacki, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+TUGboat{tb19-3/tb60antyk.pdf}{
+\end_inset 
+
+Antykwa Toru
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+acuten{}
+\end_inset 
+
+ska
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+: an electronic replica of a Polish traditional type, 
+\emph on 
+TUGboat
+\emph default 
+, 19 (3) 1998, 242--243.
+\layout Bibliography
+\bibitem {CTANpsnfss}
+
+Sebastian Rahtz and Walter A.
+ Schmidt, PSNFSS on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/macros/latex/required/psnfss}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {Kerkis}
+
+Antonis Tsolomitis, The 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+TUGboat{tb23-3-4/tb75tsol.pdf}{
+\end_inset 
+
+Kerkis
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+ font family, 
+\emph on 
+TUGboat
+\emph default 
+, 23 (3/4) 2002, 296--301.
+\layout Bibliography
+\bibitem {CTANkerkis}
+
+Antonis Tsolomitis, Kerkis on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/greek/kerkis}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANfouriernc}
+
+Michael Zedler, fouriernc on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/fouriernc}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANpxfonts}
+
+Young Ryu, pxfonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/pxfonts}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANmathpazo}
+
+Diego Puga, Pazo Math fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/mathpazo}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANfpl}
+
+Ralf Stubner, FPL font on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/fpl}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {fplneu}
+
+Walter Schmidt, FPL Neu package, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://home.vr-web.de/was/x/FPL/}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANtxfonts}
+
+Young Ryu, txfonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/txfonts}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANbelleek}
+
+Richard Kinch, Belleek fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/belleek}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {Belleek}
+
+Richard J.
+ Kinch, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+TUGboat{tb19-3/tb60kinch.pdf}{
+\end_inset 
+
+Belleek
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+}
+\end_inset 
+
+: A call for 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+MF
+\backslash 
+ 
+\end_inset 
+
+ revival, 
+\emph on 
+TUGboat
+\emph default 
+, 19 (3) 1998, 244--249.
+\layout Bibliography
+\bibitem {STIX}
+
+STIX Fonts project, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.stixfonts.org}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {mbtimes}
+
+Michel Bovani, mbtimes at 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{ftp://ftp.gutenberg.eu.org/pub/gut/distribs/mbtimes/}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {Omega}
+
+John Plaice and Yannis Haralambous, Omega at 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://omega.enstb.org}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {MgOpenModerna}
+
+MgOpenModerna, one of the MgOpen fonts, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.ellak.gr/fonts/mgopen}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {FreeSans}
+
+FreeSans, one of the Free UCS Outline Fonts, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://savannah.nongnu.org/projects/freefont}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {vera}
+
+Bitstream Vera, released by Bitstream in cooperation with the Gnome Foundation,
+ 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.gnome.org/fonts}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANbera}
+
+Malte Rosenau, Bera Postscript Type\SpecialChar ~
+1 fonts (converted from Bitstream Vera
+ fonts, which necessitated the name change) and LaTeX support files by Walter\SpecialChar ~
+A.
+ Schmidt, on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/bera}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANarev}
+
+Tavmjong Bah and Stephen Hartke, Arev Sans on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/arev}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {arev}
+
+Tavmjong Bah, Arev Sans, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://tavmjong.free.fr/FONTS}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANcharter}
+
+Bitstream Charter on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/charter}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANmathdesign}
+
+Paul Pichaureau, Math Design fonts on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/mathdesign}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CharisSIL}
+
+Charis SIL, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&item_id=CharisSILfont}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {comicsans}
+
+Comic Sans, part of Microsoft's core web fonts, available at 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://corefonts.sourceforge.net/}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANcomicsans}
+
+Scott Pakin, Comic Sans LaTeX package on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/macros/latex/contrib/comicsans}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANgaramond}
+
+URW Garamond on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/urw/garamond}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANutopia}
+
+Adobe Utopia on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/utopia}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANfourier}
+
+Michel Bovani, Fourier-GUTenberg on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/fourier-GUT}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANmnsymbol}
+
+Achim Blumensath, MnSymbol on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/mnsymbol}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANminionpro}
+
+Achim Blumensath, Andreas B
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+"u
+\end_inset 
+
+hmann, and Michael Zedler, MinionPro on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/minionpro}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {dejavu}
+
+DejaVu fonts, 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://dejavu.sourceforge.net}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {CTANluximono}
+
+Luxi Mono on 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+CTAN{/fonts/LuxiMono}
+\end_inset 
+
+.
+\layout Bibliography
+\bibitem {efont-serif}
+
+efont-serif at 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://openlab.jp/efont/serif/}
+\end_inset 
+
+.
+\layout Comment
+
+Victor Gaultney, Gentium at 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://scripts.sil.org/gentium}
+\end_inset 
+
+.
+\layout Comment
+
+Michael Zedler, gentium at 
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+
+\backslash 
+url{http://www.hft.ei.tum.de/mz/ggn.tar.bz2}
+\end_inset 
+
+.
+\layout Standard
+
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+%filler to avoid comment environment as last line
+\end_inset 
+
+
+\the_end

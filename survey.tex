@@ -1,0 +1,1148 @@
+%% LyX 1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Bold symbol macro for standard LaTeX users
+\newcommand{\boldsymbol}[1]{\mbox{\boldmath $#1$}}
+
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ \usepackage{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+
+%PracTEXreplacement
+
+% LyX includes graphicx if any pictures are used; so put in ERT boxes
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+
+%\usepackage{cite} % numerically sorts multiple references contained in one citation
+
+\usepackage{url} % don't let LyX do this, because IfFileExists confuses HeVeA
+
+\setlength{\fboxsep}{.25in}
+
+\usepackage{array}
+\setlength\extrarowheight{1pt}
+
+\usepackage{color,hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{
+  pdfauthor = {Stephen G. Hartke},
+  pdftitle = {A Survey of Free Math Fonts for LaTeX},
+  pdfsubject = {free math fonts for LaTeX},
+  pdfkeywords = {LaTeX, TeX, math font, free},
+  pdfcreator = {LaTeX with hyperref package},
+  pdfproducer = {pdflatex},
+  pdfview = FitH,
+  pdfstartview = FitH,
+  linkcolor = linkcolour, % colors don't work?
+  citecolor = linkcolour,
+  filecolor = linkcolour,
+  urlcolor = linkcolour,
+  pagecolor = linkcolour,
+  colorlinks
+}
+
+\usepackage{ifthen}
+\usepackage{hevea}
+\ifthenelse{\boolean{hevea}}
+{
+  \newcommand{\l}{\begin{rawhtml}&#322;\end{rawhtml}}
+  \newcommand{\acuten}{\begin{rawhtml}&#324;\end{rawhtml}}
+  %\newcommand{\textbackslash}{\begin{rawhtml}&#92;\end{rawhtml}}
+  \newcommand{\captiontitle}[2][dummy]{\caption{#2}}
+  \newcommand{\captionbreak}{}
+  \newenvironment{sidewaystable}{\begin{table}}{\end{table}}
+  \renewcommand{\LaTeX}{LaTeX}  % looks silly in HTML
+  \renewcommand{\TeX}{TeX}
+  \newcommand{\MF}{METAFONT}
+  \newcommand{\pic}[1]
+     {\begin{center}
+         \begin{rawhtml}<table align="center" border="1"><tr><td width="0" align="center"><img src="\end{rawhtml}images/#1.png\begin{rawhtml}"></td></tr></table>\end{rawhtml}
+      \end{center}}
+  \renewcommand{\@figrule}{}  % no hrule around floats
+ % fixes colors
+ \htmlhead{\begin{rawhtml}
+  <title>A Survey of Free Math Fonts for TeX and LaTeX</title>
+  <style type="text/css">
+    BODY { background-color: white; color: black; }
+    A:link { color: #003399; text-decoration: none; }
+    A:active { color: blue; text-decoration: underline; }
+    A:visited { color: #003399; text-decoration: none; }
+    A:hover { color: blue; text-decoration: underline; }
+    H5 {font-size: 110\%;  font-weight: bold; }
+  </style>\end{rawhtml}}
+  \title{A Survey of Free Math Fonts for \TeX{} and \LaTeX{}%
+  \footnote{Copyright 2006 Stephen G.\  Hartke. Permission is granted to distribute verbatim or modified copies of this document provided this notice remains intact.\protect \\ An initial version of this article appeared in \emph{The Prac\TeX{} Journal,} 1, 2006,  \protect\url{http://www.tug.org/pracjourn/2006-1/hartke/}.\protect \\
+The permanent home of this article is \protect\url{http://ctan.tug.org/tex-archive/info/Free_Math_Font_Survey}.}}
+  \author{Stephen G. Hartke\footnote{Email: lastname @ gmail dot com.}}
+  \date{May 5, 2006}
+}
+{
+  \usepackage[letterpaper,text={6.5in,9in}]{geometry}
+  \usepackage{palatino}\renewcommand{\ttdefault}{txtt}
+  \usepackage{rotating} % to rotate large table
+  \newcommand{\acuten}{\'n}
+  \newcommand{\pic}[1]
+        %{\hspace*{-\fboxsep}\framebox{\includegraphics{#1.eps}}} % for PracTeX
+        {\framebox{\includegraphics{#1.eps}}}
+  \usepackage{topcapt}  % put captions above figures
+  %\setlength{\abovecaptionskip}{0pt}
+  \newcommand{\captiontitle}[2][]{\topcaption{#2}}
+  \DeclareRobustCommand\captionbreak{\\\hspace*{\fill}}
+  \@ifundefined{MF}{\newcommand{\MF}{METAFONT}} % defined by practex, but not by others
+}
+
+
+\newcommand{\CTAN}[1]{%
+  \ifthenelse{\boolean{hevea}}% HeVeA does not allow parameters in href
+  {\ahref{http://ctan.tug.org/tex-archive#1/}{CTAN:\texttt{#1}}}%
+  {\href{http://ctan.tug.org/tex-archive#1/}{CTAN:\texttt{#1}}}%
+}
+\newcommand{\TUGboat}[2]{%
+  \ifthenelse{\boolean{hevea}}%
+  {\ahref{http://www.tug.org/TUGboat/Articles/#1}{#2}}%
+  {\href{http://www.tug.org/TUGboat/Articles/#1}{#2}}%
+}
+
+\usepackage{babel}
+\makeatother
+\begin{document}
+
+\title{A Survey of Free Math Fonts for \TeX{} and \LaTeX{}%
+\footnote{Copyright 2006 Stephen G.\  Hartke. Permission is granted to distribute
+verbatim or modified copies of this document provided this notice
+remains intact.\protect \\
+An initial version of this article appeared in \emph{The Prac\TeX{}
+Journal,} 1, 2006, \url{http://www.tug.org/pracjourn/2006-1/hartke/}.\protect \\
+The permanent home of this article is \url{http://ctan.tug.org/tex-archive/info/Free_Math_Font_Survey}.%
+}}
+
+
+\author{Stephen G. Hartke%
+\footnote{Email: lastname @ gmail dot com.%
+}}
+
+
+\date{May 5, 2006}
+
+\maketitle
+\begin{comment}
+The title, author, and date are in the preamble for HeVeA.
+\end{comment}
+\begin{htmlonly}
+
+\textbf{Note:} \emph{This survey is also available in \href{survey.pdf}{PDF}
+format.}\medskip
+
+\end{htmlonly}
+
+
+\section*{Contents}
+
+\noindent \hyperref[sec:Intro]{\textbf{Introduction}}\begin{latexonly}\hfill\textbf{\pageref{sec:Intro}}\end{latexonly}
+
+\noindent \hyperref[sec:TeXFonts]{\textbf{Fonts Originally Designed
+for \TeX{}}}\begin{latexonly}\hfill\textbf{\pageref{sec:TeXFonts}}\end{latexonly}
+
+\begin{quote}
+\hyperref[fig:CM]{Computer Modern}, \hyperref[fig:CMBright]{CM
+Bright}, \hyperref[fig:ConcEuler]{Concrete and Euler}, \hyperref[fig:ConcMath]{Concrete
+Math}, \hyperref[fig:Iwona]{Iwona}, \hyperref[fig:Kurier]{Kurier},
+\hyperref[fig:AntPolt]{Antykwa P\'o\l{}tawskiego}, \hyperref[fig:AntTor]{Antykwa
+Toru\acuten{}ska}
+\end{quote}
+\noindent \hyperref[sec:PSFonts]{\textbf{Core Postscript Fonts}}\begin{latexonly}\hfill\textbf{\pageref{sec:PSFonts}}\end{latexonly}
+
+\begin{quote}
+\hyperref[fig:Kerkis]{Kerkis}, \hyperref[fig:Millen]{Millennial},
+\hyperref[fig:fouriernc]{fouriernc}, \hyperref[fig:pxfonts]{pxfonts},
+\hyperref[fig:Pazo]{Pazo}, \hyperref[fig:mathpple]{mathpple},
+\hyperref[fig:txfonts]{txfonts}, \hyperref[fig:Belleek]{Belleek},
+\hyperref[fig:mathptmx]{mathptmx}, \hyperref[fig:mbtimes]{mbtimes}
+\end{quote}
+\noindent \hyperref[sec:OtherFonts]{\textbf{Other Free Fonts}}\begin{latexonly}\hfill\textbf{\pageref{sec:OtherFonts}}\end{latexonly}
+
+\begin{quote}
+\hyperref[fig:Arev]{Arev Sans}, \hyperref[fig:chartermd]{Math Design
+with Charter}, \hyperref[fig:comicsans]{Comic Sans}, \hyperref[fig:garamd]{Math
+Design with Garamond}, \hyperref[fig:fourier]{Fourier-GUTenberg},
+\hyperref[fig:utopiamd]{Math Design with Utopia}
+\end{quote}
+\noindent \hyperref[sec:Compar]{\textbf{Comparison of Features}}\begin{latexonly}\hfill\textbf{\pageref{sec:Compar}}\end{latexonly}
+
+\noindent \hyperref[sec:Creation]{\textbf{Creation of this Survey}}\begin{latexonly}\hfill\textbf{\pageref{sec:Creation}}\end{latexonly}
+
+
+\section{\label{sec:Intro}Introduction}
+
+One of the biggest challenges in selecting a font for \TeX{} or \LaTeX{}
+is that there are not very many math fonts that match the plethora
+of available text fonts. It's reasonably easy to use an arbitrary
+Postscript Type~1 font in \TeX{} for text (see Philipp Lehman's Font
+Installation Guide~\cite{CTANfontinstgd}), but obtaining and configuring
+a matching math font from scratch is a demanding task. Thus, there
+are few math fonts for \TeX{}, and in particular very few free ones.
+However, in the past few years, several very nice free fonts have
+been released. The goal of this article is to list all of the free
+math fonts and to provide examples.
+
+{}``Free'' here means fonts that are free to use (both commercially
+and non-com\-mercially) and free to distribute, but not necessarily
+free to modify. I also am biased towards listing fonts that have outline
+versions in PostScript Type~1 format suitable for embedding in Postscript
+PS or Adobe Acrobat PDF files. Donald E. Knuth originally designed
+the \MF\  system for producing fonts for \TeX{} in bitmap format.
+PS or PDF files that have embedded bitmap fonts do not display well
+in Adobe Acrobat Reader,%
+\footnote{Starting with version 6, Adobe Acrobat Reader displays bitmap fonts
+fine. The free PDF viewers Ghostview and xpdf have always displayed
+bitmap fonts accurately.%
+} to the point of being almost unreadable on the screen, and are also
+noticeable when printing at extremely high resolutions (on photo-setters,
+for instance). Since outline fonts contain mathematical descriptions
+of the curves used in each glyph, they can be scaled to any resolution
+while retaining image quality.
+
+The fonts listed here are categorized according to their origin: whether
+originally designed for \TeX{}, related to the standard Postscript
+fonts, or other free fonts. A font's origin does not particularly
+bear on its quality or suitability for typesetting mathematics. No
+recommendations or evaluations of the fonts are given here, as people's
+tastes in fonts vary greatly. The goal of this survey is simply to
+make authors aware of all their options.
+
+Most of the fonts can be selected by including a single package in
+the preamble of the user's \LaTeX{} file (the \emph{preamble} is the
+section after {}``\texttt{\textbackslash{}documentclass\{\}}'' and
+before {}``\texttt{\textbackslash{}begin\{document\}}''). The line
+or lines to include for each font are listed in the caption of the
+sample figure. For example {}``\texttt{\textbackslash{}usepackage\{fourier\}}''
+uses Utopia and Fourier-GUTenberg, as shown in the sample \LaTeX{}
+file in Section~\ref{sec:Creation}.
+
+Walter A. Schmidt also has a survey in German of math fonts~\cite{WASmathfonts}
+that concentrates more on commercial fonts. Schmidt's survey has several
+examples that show different pairings between text fonts and math
+fonts.
+
+
+\section{\label{sec:TeXFonts}Fonts Originally Designed for \TeX{}}
+
+These fonts were originally designed for use with \TeX{}, using either
+\MF\  or MetaType1~\cite{CTANmetatype1}.
+
+
+\paragraph{Computer Modern:}
+
+Knuth created Computer Modern~\cite{CMBook} as the default font
+for \TeX{}. The font set includes serif, sans serif, and monospaced
+text faces, and corresponding math fonts. The math symbol set is very
+complete. Computer Modern is \emph{the} font for \TeX{}, which leads
+some to claim that the font is overused. The characters are fairly
+thin and light, and so are not as readable on screen in small sizes
+or from high-resolution laser printers.%
+\footnote{When on screen, the fonts are usually anti-aliased, often into a gray
+blur because the stems are not thick enough to fill a pixel. When
+printed with a high-resolution laser printer, the fonts are shown
+accurately, but I think are too thin. With a medium-resolution printer
+like an inkjet, there's enough resolution to show the form of the
+letters (unlike on screen), but the low-resolution \char`\"{}bulks
+up\char`\"{} the letters compared to a high-resolution laser printer,
+with the letters thus appearing darker.%
+} In a comparison by Raph Levien~\cite{CMRgain}, the printing in
+Knuth's \emph{Digital Typography}~\cite{DigTyp} is heavier than
+the digital version or from a laser printer.
+
+Type~1 versions of Computer Modern from Blue Sky Research and Y\&Y,
+Inc. have been made freely available by the American Mathematical
+Society (AMS) and a collection of publishers and other technical companies~\cite{CTANbluesky,bluesky}.
+Basil K. Malyshev has also released a free Type~1 version of Computer
+Modern~\cite{CTANbakoma}, originally for use with his \TeX{} system
+BaKoMa \TeX{}.
+
+Computer Modern has been extended to include more characters, particularly
+for non-English European languages. These fonts include European Computer
+Modern by J\"org Knappen and Norbert Schwarz (\MF\  only) \cite{CTANec};
+Tt2001 by Szab\'o P\'eter (converted into Type~1 format from \MF\ 
+sources using \texttt{textrace}; Tt2001 has been superseded by CM-Super,
+which P\'eter recommends) \cite{textrace,CTANtt2001}; CM-Super by
+Vladimir Volovich (also converted using \texttt{textrace}) \cite{CM-Super,CTANcm-super};
+and Latin Modern by Bogus\l{}aw Jackowski and Janusz M. Nowacki (extended
+from the Blue Sky AMS fonts using MetaType1) \cite{LatinModern,CTANlm}. 
+
+The Sli\TeX{} font (\texttt{lcmss}) is a sans serif text face that
+has wide letters and high \emph{x} height. Its high readability makes
+it extremely suitable for slide presentations. However, there is no
+matching math font. Sli\TeX{} sans serif can be set as the primary
+text font using \TeX{}Power's \texttt{tpslifonts.sty}~\cite{texpower}.%
+\begin{figure*}
+\captiontitle[Computer Modern]{\label{fig:CM}Computer Modern (using
+the Blue Sky and Y\&Y Type~1 fonts; no package necessary).}
+
+\pic{cm}
+\end{figure*}
+ 
+
+
+\paragraph{Computer Modern Bright: }
+
+This a sans serif font with corresponding math font derived from Computer
+Modern by Walter A. Schmidt \cite{CTANcmbright}. CM-Super contains
+Type~1 versions of the text fonts in T1 encoding, and Harald Harders
+created Type~1 versions of the text and math fonts called \texttt{hfbright}~\cite{CTANhfbright}
+using \texttt{mftrace}. %
+\begin{figure*}
+\captiontitle[CM Bright]{\label{fig:CMBright}CM Bright (\texttt{\textbackslash{}usepackage\{cmbright\}};
+output uses the \texttt{hfbright} fonts).}
+
+\pic{cmbright}
+\end{figure*}
+
+
+
+\paragraph{Concrete and Euler or Concrete Math:}
+
+The Concrete font was created by Knuth for his book \emph{Concrete
+Mathematics}~\cite{concretebook}. Hermann Zapf was commissioned
+by the AMS to create the math font Euler for use in \emph{Concrete
+Mathematics}. Type~1 versions of Concrete in T1 encoding are available
+in the CM-Super collection~\cite{CTANcm-super}, and Type~1 versions
+of Euler are available in the Blue Sky collection from the AMS~\cite{CTANbluesky}
+and in the BaKoMa collection~\cite{CTANbakoma}. The \texttt{eulervm}
+package by Walter Schmidt~\cite{CTANeulervm,eulervm} implements
+virtual fonts for Euler that are more efficient to use with \LaTeX{}.
+Ulrik Vieth created the Concrete Math fonts~\cite{CTANconcmath}
+to match the Concrete text fonts; the only free versions are implemented
+in \MF. The \texttt{ccfonts} package by Walter Schmidt~\cite{CTANccfonts}
+changes the text font to Concrete and changes the math font to the
+Concrete Math fonts if \texttt{eulervm} is not loaded. %
+\begin{figure*}
+\captiontitle[Concrete and Euler]{\label{fig:ConcEuler}Concrete
+text with Euler math (\texttt{\textbackslash{}usepackage\{ccfonts,eulervm\}
+\textbackslash{}usepackage{[}T1{]}\{fontenc\}}). Note that Concrete
+does not have a bold font, so Computer Modern is used instead. Non-bold
+text output uses the CM-Super Concrete fonts.}
+
+\pic{concrete}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[Concrete Math]{\label{fig:ConcMath}Concrete text with
+Concrete math (\texttt{\textbackslash{}usepackage\{ccfonts\} \textbackslash{}usepackage{[}T1{]}\{fontenc\}}).
+Note that Concrete does not have a bold font, so Computer Modern is
+used instead. Non-bold text output uses the CM-Super Concrete fonts.}
+
+\pic{concmath}
+\end{figure*}
+
+
+
+\paragraph{Iwona and Kurier:}
+
+The fonts Iwona and Kurier were created by J. M. Nowacki~\cite{CTANiwona,CTANkurier}
+using the MetaType1 system based on typefaces by the Polish typographer
+Ma\l{}gorzata Budyta. The two fonts are very similar, except that
+Kurier avoids {}``ink traps'' with gaps in its strokes. The packages
+have complete math support in both \TeX{} and \LaTeX{}. %
+\begin{figure*}
+\captiontitle[Iwona]{\label{fig:Iwona}Iwona text and math (\texttt{\textbackslash{}usepackage{[}math{]}\{iwona\}}).}
+
+\pic{iwona}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[Kurier]{\label{fig:Kurier}Kurier text and math (\texttt{\textbackslash{}usepackage{[}math{]}\{kurier\}}).}
+
+\pic{kurier}
+\end{figure*}
+
+
+
+\paragraph{Antykwa P\'o\l{}tawskiego:}
+
+J. M. Nowacki created the font Antykwa P\'o\l{}tawskiego~\cite{CTANantp}
+using the MetaType1 system based on a typeface by Polish typographer
+Adam P\'o\l{}tawski. The package \texttt{antpolt} has no math support
+at this time, and requires the encoding to be set to QX or OT4. %
+\begin{figure*}
+\captiontitle[Antykwa P\'o\l{}tawskiego]{\label{fig:AntPolt}Antykwa
+P\'o\l{}tawskiego text (\texttt{\textbackslash{}usepackage\{antpolt\}}
+and \texttt{\textbackslash{}usepackage{[}QX{]}\{fontenc\}}).}
+
+\pic{antpolt}
+\end{figure*}
+
+
+
+\paragraph{Antykwa Toru\acuten{}ska:}
+
+The font Antykwa Toru\acuten{}ska was created by J. M. Nowacki~\cite{AntTorunska,CTANantt}
+using the MetaType1 system based on a typeface by the Polish typographer
+Zygfryd Gardzielewski. The package \texttt{anttor} has complete math
+support in both \TeX{} and \LaTeX{}. %
+\begin{figure*}
+\captiontitle[Antykwa Toru\'nska]{\label{fig:AntTor}Antykwa Toru\acuten{}ska
+text and math (\texttt{\textbackslash{}usepackage{[}math{]}\{anttor\}}).}
+
+\pic{anttor}
+\end{figure*}
+
+
+
+\section{\label{sec:PSFonts}Core Postscript Fonts}
+
+When Adobe introduced Postscript in 1984, they defined 35 core fonts
+(in 10 typefaces) that must be present in all Postscript interpreters.
+In 1996, URW++ released a replacement set for the core fonts under
+the GNU General Public License. The URW++ fonts were primarily released
+for use with Ghostscript, a free Postscript interpreter. Table~\ref{cap:CorePostscriptFonts}
+lists the original Postscript fonts, along with the URW++/Ghostscript
+equivalents. Each font can be used as the default text font by selecting
+the indicated \LaTeX{} package from the PSNFSS distribution~\cite{CTANpsnfss}.%
+\begin{table}
+\begin{center}\begin{tabular}{cccc}
+\hline 
+Adobe Postscript&
+URW++/Ghostscript&
+\# of fonts&
+package\tabularnewline
+\hline
+Avant Garde&
+URW Gothic L&
+4&
+\texttt{avant}\tabularnewline
+Bookman&
+URW Bookman L&
+4&
+\texttt{bookman}\tabularnewline
+Courier&
+Nimbus Mono L&
+4&
+\texttt{courier}\tabularnewline
+Helvetica&
+Nimbus Sans L&
+8&
+\texttt{helvet}\tabularnewline
+New Century Schoolbook&
+Century Schoolbook L&
+4&
+\texttt{newcent}\tabularnewline
+Palatino&
+URW Palladio L&
+4&
+\texttt{palatino}\tabularnewline
+Symbol&
+Standard Symbols L&
+1&
+---\tabularnewline
+Times&
+Nimbus Roman No.\ 9 L&
+4&
+\texttt{times}\tabularnewline
+Zapf Chancery&
+URW Chancery L&
+1&
+\texttt{chancery}\tabularnewline
+Zapf Dingbats&
+Dingbats&
+1&
+---\tabularnewline
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\captiontitle[Core Postscript fonts]{\label{cap:CorePostscriptFonts}Core
+Postscript fonts and URW++/Ghostscript equivalents.}\end{center}
+\end{table}
+ 
+
+
+\paragraph{Avant Garde and Kerkis Sans:}
+
+The font Kerkis Sans was created by Antonis Tsolomitis~\cite{Kerkis,CTANkerkis}
+by extending Avant Garde to include Greek and additional Latin characters.
+The resulting fonts are stand-alone and can be used by applications
+outside of \TeX{}. The package \texttt{kerkis} sets the sans serif
+font to Kerkis Sans; there is no package option to set Kerkis Sans
+to be the primary text font.
+
+
+\paragraph{Bookman and Kerkis:}
+
+The font Kerkis was created by Antonis Tsolomitis~\cite{Kerkis,CTANkerkis}
+by extending URW Bookman~L to include Greek and additional Latin
+characters. The resulting fonts are stand-alone and can be used by
+applications outside of \TeX{}. A font of math symbols is included,
+but not used by the \LaTeX{} package. The package \texttt{kmath} uses
+txfonts for math symbols and uppercase Greek letters. %
+\begin{figure*}
+\captiontitle[Kerkis]{\label{fig:Kerkis}Kerkis text and math (\texttt{\textbackslash{}usepackage\{kmath,kerkis\}};
+the order of the packages matters, since \texttt{kmath} loads the
+\texttt{txfonts} package which changes the default text font).}
+
+\pic{kerkis}
+\end{figure*}
+
+
+
+\paragraph{New Century Schoolbook and Millennial or fouriernc: }
+
+The Millennial math font of the current author contains Greek letters
+and other letter-like mathematical symbols. A set of virtual fonts
+is provided that uses New Century Schoolbook for Latin letters in
+math, Millennial for Greek and other letter-like symbols, and txfonts
+and Computer Modern for all other symbols, including binary operators,
+relations, and large symbols. This font is still in development, but
+will hopefully be released in 2006. The \texttt{fouriernc} package
+of Michael Zedler~\cite{CTANfouriernc} uses New Century Schoolbook
+for text and Latin letters in mathematics, and the Greek and symbol
+fonts from the Fourier-GUTenberg package for the remaining mathematical
+symbols. %
+\begin{figure*}
+\captiontitle[Millennial]{\label{fig:Millen}New Century Schoolbook
+with Millennial math \captionbreak (\texttt{\textbackslash{}usepackage\{millennial\}}).}
+
+\pic{millennial}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[fouriernc]{\label{fig:fouriernc}New Century Schoolbook
+with Fourier math \captionbreak (\texttt{\textbackslash{}usepackage\{fouriernc\}}).}
+
+\pic{fouriernc}
+\end{figure*}
+
+
+
+\paragraph{Palatino and pxfonts, Pazo, or mathpple:}
+
+Young Ryu created the pxfonts collection~\cite{CTANpxfonts}, which
+contains Greek and other letter-like symbols, as well as a complete
+set of geometric symbols, including the AMS symbols. Diego Puga created
+the Pazo math fonts, which include the Greek letters and other letter-like
+symbols in a style that matches Palatino. The \LaTeX{} package \texttt{mathpazo}
+(now part of PSNFSS~\cite{CTANpsnfss}) uses Palatino for Latin letters,
+Pazo for Greek and other letter-like symbols, and Computer Modern
+for geometric symbols. The \LaTeX{} package \texttt{mathpple} (also
+part of PSNFSS~\cite{CTANpsnfss}) uses Palatino for Latin letters
+and slanted Euler for Greek and other symbols. Since Hermann Zapf
+designed both Palatino and Euler, the designs mesh well. An alternate
+use of Euler is using the \texttt{eulervm} package. Ralf Stubner added
+small caps and old-style figures to URW Palladio L in the FPL package~\cite{CTANfpl},
+and Walter Schmidt extended these fonts in the FPL Neu package~\cite{fplneu}.
+%
+\begin{figure*}
+\captiontitle[pxfonts]{\label{fig:pxfonts}Palatino text with pxfonts
+math (\texttt{\textbackslash{}usepackage\{pxfonts\}}).}
+
+\pic{pxfonts}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[Pazo]{\label{fig:Pazo}Palatino text with Pazo math
+(\texttt{\textbackslash{}usepackage\{mathpazo\}}).}
+
+\pic{pazo}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[mathpple]{\label{fig:mathpple}Palatino text with Euler
+math (\texttt{\textbackslash{}usepackage\{mathpple\}}).}
+
+\pic{mathpple}
+\end{figure*}
+
+
+
+\paragraph{Times and txfonts, Belleek, mathptmx, or mbtimes:}
+
+Young Ryu created the txfonts collection~\cite{CTANtxfonts}, which
+contains Greek and other letter-like symbols, as well as a complete
+set of geometric symbols, including the AMS symbols. The \texttt{txfonts}
+package also includes a very nice typewriter font, \texttt{txtt}.
+Belleek was created by Richard Kinch~\cite{CTANbelleek,Belleek}
+and is a drop-in replacement for the commercial fonts required by
+the \texttt{mathtime} package (now part of PSNFSS~\cite{CTANpsnfss}).
+The \LaTeX{} package \texttt{mathptmx} (also part of PSNFSS~\cite{CTANpsnfss})
+uses Times for Latin letters and Symbol for Greek and other symbols.
+Michel Bovani created the \texttt{mbtimes} package by using Omega
+Serif for text and Latin and Greek letters in mathematics. \texttt{mbtimes}
+also includes symbol fonts and a set of calligraphic letters. Omega
+Serif is the primary font for Omega, a 16-bit extension of \TeX{}
+by John Plaice and Yannis Haralambous~\cite{Omega}.
+
+The STIX fonts project~\cite{STIX} is a collaboration of several
+academic publishers to create a set of Times-compatible fonts containing
+every possible glyph needed for mathematical and technical publishing.
+These fonts are still in development, with a scheduled release in
+the middle of 2006.
+
+Note that Adobe Reader 7.0 replaces Times with Adobe Serif MM if Times
+or the Ghostscript equivalent Nimbus Roman No.\ 9 L is not embedded
+in the PDF file. Adobe Serif MM only has an oblique version, not a
+real italics, and thus, the primary text and Latin letters in mathematics
+will not match letters taken from additional fonts. This problem can
+be avoided by embedding Times or the Ghostscript equivalent Nimbus
+Roman No.\ 9 L into the PDF file. Also, I have heard (but not personally
+verified) that the Windows version of Adobe Reader displays Times
+New Roman when Times is not embedded. The upright versions of the
+two typefaces are very similar, but the italics are noticeably different
+(consider the \emph{z}, for instance). %
+\begin{figure*}
+\captiontitle[txfonts]{\label{fig:txfonts}Times text with txfonts
+math (\texttt{\textbackslash{}usepackage{[}varg{]}\{txfonts\}}).}
+
+\pic{txfonts}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[Belleek]{\label{fig:Belleek}Times text with Belleek
+math (\texttt{\textbackslash{}usepackage\{mathtime\}}; output uses
+the Belleek fonts).}
+
+\pic{belleek}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[mathptmx]{\label{fig:mathptmx}Times text with Symbol
+math (\texttt{\textbackslash{}usepackage\{mathptmx\}}).}
+
+\pic{mathptmx}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[mbtimes]{\label{fig:mbtimes}Omega Serif text with
+Omega math (\texttt{\textbackslash{}usepackage\{mbtimes\}}).}
+
+\pic{mbtimes}
+\end{figure*}
+
+
+\bigskip{}
+Helvetica, Courier, and Zapf Chancery do not have matching math fonts.
+Courier and Zapf Chancery are inappropriate for mathematics anyway,
+but Helvetica is sometimes used for presentations and posters. The
+free fonts MgOpenModerna~\cite{MgOpenModerna} and FreeSans~\cite{FreeSans}
+would be natural choices for the Greek letters in a Helvetica mathematics
+font.
+
+
+\section{\label{sec:OtherFonts}Other Free Fonts}
+
+Several other fonts have been released for use with free open-source
+software. \LaTeX{} packages have been created for most of these fonts.
+
+
+\paragraph{Bitstream Vera Sans and Arev Sans:}
+
+Bitstream Vera was released by Bitstream in cooperation with the Gnome
+Foundation~\cite{vera} as a high quality scalable free font for
+use with free open-source software. Bitstream Vera serif, sans serif,
+and sans mono are available in text using the \texttt{bera} package
+by Malte Rosenau and Walter~A. Schmidt~\cite{CTANbera}. Tavmjong
+Bah created Arev Sans~\cite{arev} by extending Bitstream Vera Sans
+to include Greek, Cyrillic, and many mathematical symbols. The current
+author created the \LaTeX{} package \texttt{arev}~\cite{CTANarev}
+using Arev Sans for text and math letters and bold Math Design fonts
+for Bitstream Charter for symbols. %
+\begin{figure*}
+\captiontitle[Arev Sans]{\label{fig:Arev}Arev Sans text with Arev
+math (\texttt{\textbackslash{}usepackage\{arev\}}).}
+
+\pic{arev}
+\end{figure*}
+
+
+
+\paragraph{Bitstream Charter and Math Design:}
+
+Bitstream Charter~\cite{CTANcharter} was donated by Bitstream for
+use with X Windows. The Math Design fonts for Bitstream Charter created
+by Paul Pichaureau~\cite{CTANmathdesign} are very complete, including
+Greek letters, symbols from Computer Modern, and the AMS symbols.
+Charis SIL~\cite{CharisSIL} might be an alternate source for Greek
+letters that match Bitstream Charter more closely. Another possibility
+for a math font is to use the Euler fonts with the \texttt{charter}
+and \texttt{eulervm} packages.%
+\begin{figure*}
+\captiontitle[Math Design for Charter]{\label{fig:chartermd}Bitstream
+Charter text with Math Design math \captionbreak (\texttt{\textbackslash{}usepackage{[}charter{]}\{mathdesign\}}).}
+
+\pic{chartermd}
+\end{figure*}
+
+
+
+\paragraph{Comic Sans:}
+
+Comic Sans is one of Microsoft's core web fonts that is freely available~\cite{comicsans}.
+The \texttt{comicsans} package by Scott Pakin~\cite{CTANcomicsans}
+implements Comic Sans as both the primary text font and the Latin
+and Greek letters in mathematics. Computer Modern is used for geometric
+symbols that are not present in Comic Sans. Comic Sans is hard to
+read for large blocks of text, but might be nice to use for short
+comments in a handwriting style.%
+\begin{figure*}
+\captiontitle[Comic Sans]{\label{fig:comicsans}Comic Sans text and
+math (\texttt{\textbackslash{}usepackage\{comicsans\}}).}
+
+\pic{comicsans}
+\end{figure*}
+
+
+\begin{comment}
+Gentium not released yet.
+
+\paragraph{Gentium: }
+
+Gentium was designed by Victor Gaultney~\cite{Gentium} to be suitable
+for any language that uses a Latin-based script. Gentium was released
+by SIL under the Open Font License. Michael Zedler converted Gentium
+to Type~1 format and produced a \LaTeX{} package~\cite{Gentiumtex}%
+\footnote{This package is currently in development; when completed it will presumably
+be posted somewhere more official.%
+} for its use; the mathematics uses Gentium for Latin and Greek letters
+and MnSymbol for geometric symbols. %
+\begin{figure*}
+\captiontitle[Gentium]{\label{fig:Gentium}Gentium text with Gentium
+math (\texttt{\textbackslash{}usepackage\{gentium\}}).}
+
+\pic{gentium}
+\end{figure*}
+
+
+\end{comment}
+
+\paragraph{URW Garamond and Math Design: }
+
+URW Garamond No.~8~\cite{CTANgaramond} is available under the Aladdin
+Free Public License as part of the GhostPCL project. The Math Design
+fonts for URW Garamond created by Paul Pichaureau~\cite{CTANmathdesign}
+are very complete, including Greek letters, symbols from Computer
+Modern, and the AMS symbols.%
+\begin{figure*}
+\captiontitle[Math Design for Garamond]{\label{fig:garamd}URW Garamond
+text with Math Design math \captionbreak (\texttt{\textbackslash{}usepackage{[}garamond{]}\{mathdesign\}}).}
+
+\pic{garamondmd}
+\end{figure*}
+
+
+
+\paragraph{Utopia and Fourier or Math Design:}
+
+Utopia~\cite{CTANutopia} was donated by Adobe for use with X Windows.
+Michel Bovani created Fourier-GUTenberg~\cite{CTANfourier} as an
+accompaniment to Utopia and is very complete, containing both Greek
+letters and standard and AMS symbols. The Math Design fonts for Utopia
+of Paul Pichaureau~\cite{CTANmathdesign} are also very complete,
+including Greek letters and AMS symbols.%
+\begin{figure*}
+\captiontitle[Fourier-GUTenberg]{\label{fig:fourier}Utopia text
+with Fourier-GUTenberg math (\texttt{\textbackslash{}usepackage\{fourier\}}).}
+
+\pic{fourier}
+\end{figure*}
+%
+\begin{figure*}
+\captiontitle[Math Design for Utopia]{\label{fig:utopiamd}Utopia
+text with Math Design math \captionbreak (\texttt{\textbackslash{}usepackage{[}utopia{]}\{mathdesign\}}).}
+
+\pic{utopiamd}
+\end{figure*}
+
+
+\bigskip{}
+Using \MF, Achim Blumensath created the package \texttt{MnSymbol}~\cite{CTANmnsymbol},
+which contains geometric symbols (no Greek or other letter-like symbols)
+in varying optical sizes that match the commercial font Adobe MinionPro.
+The \texttt{MnSymbol} package also contains traced Type~1 versions.
+\texttt{MnSymbol} is free; however the package \texttt{MinionPro}
+of Achim Blumensath, Andreas B\"uhmann, and Michael Zedler~\cite{CTANminionpro}
+which uses \texttt{MnSymbol} requires a license from Adobe for the
+font MininonPro.
+
+
+\section{\label{sec:Compar}Comparison of Features}
+
+Table~\ref{cap:FeatureComparison} shows a comparison of the different
+features in each package. The only packages that have optical sizes
+are Computer Modern, CM Bright, Concrete, Euler, and MnSymbol. Except
+for when the \texttt{eulervm} package is used, Latin math letters
+are taken from the italic text font. An asterisk after a font name
+indicates that the package has a version of that style in its own
+font files.
+
+\begin{sidewaystable}\centering\small
+
+\begin{tabular}{lccccccc}
+\hline 
+$\;$Package&
+Text&
+Greek&
+CM sym&
+AMS sym&
+Calligr&
+Blkbd&
+boldmath\tabularnewline
+\hline
+computer modern&
+cm&
+cm&
+cm&
+ams&
+cm&
+ams&
+yes\tabularnewline
+cmbright&
+cmbright&
+cmbright&
+cm{*}&
+cm{*}&
+cm{*}&
+ams&
+no\tabularnewline
+ccfonts,eulervm&
+concrete&
+euler&
+euler&
+ams&
+euler&
+ams&
+yes\tabularnewline
+concmath&
+concrete&
+concrete&
+concmath&
+concmath&
+concmath&
+concmath&
+no\tabularnewline
+iwona&
+iwona&
+iwona&
+iwona&
+iwona&
+cm{*}&
+ams&
+yes\tabularnewline
+kurier&
+kurier&
+kurier&
+kurier&
+kurier&
+cm{*}&
+ams&
+yes\tabularnewline
+anttor&
+anttor&
+anttor&
+anttor&
+anttor&
+anttor&
+ams&
+yes\tabularnewline
+kmath,kerkis&
+kerkis&
+kerkis&
+txfonts&
+txfonts&
+txfonts&
+txfonts&
+yes\tabularnewline
+millennial&
+nc schlbk&
+millennial&
+txfonts&
+txfonts&
+txfonts&
+ams&
+no\tabularnewline
+fouriernc&
+nc schlbk&
+fourier&
+fourier&
+fourier&
+fourier&
+fourier&
+yes\tabularnewline
+pxfonts&
+palatino&
+pxfonts&
+txfonts{*}&
+txfonts{*}&
+txfonts{*}&
+pxfonts&
+yes\tabularnewline
+mathpazo&
+palatino&
+pazo&
+cm&
+ams&
+cm&
+pazo&
+yes\tabularnewline
+mathpple&
+palatino&
+euler&
+euler&
+ams&
+cm&
+ams&
+yes\tabularnewline
+txfonts&
+times&
+txfonts&
+txfonts&
+txfonts&
+txfonts&
+txfonts&
+yes\tabularnewline
+mathtime (Belleek)&
+times&
+belleek&
+belleek&
+ams&
+cm&
+ams&
+no\tabularnewline
+mathptmx&
+times&
+symbol&
+cm&
+ams&
+rsfs&
+ams&
+no\tabularnewline
+mbtimes&
+omega&
+omega&
+mbtimes&
+ams&
+rsfs{*}&
+esstix&
+yes\tabularnewline
+arev&
+arev&
+arev&
+md charter&
+md charter&
+cm&
+fourier&
+yes\tabularnewline
+mathdesign (Charter)&
+charter&
+md charter&
+md charter&
+md charter&
+rsfs{*}&
+ams&
+yes\tabularnewline
+comicsans&
+comicsans&
+comicsans&
+cm&
+cm&
+cm&
+cm&
+yes\tabularnewline
+mathdesign (Garamond)&
+garamond&
+md garamond&
+md garamond&
+md garamond&
+rsfs{*}&
+ams{*}&
+yes\tabularnewline
+fourier&
+utopia&
+fourier&
+fourier&
+fourier&
+fourier&
+fourier&
+yes\tabularnewline
+mathdesign (Utopia)&
+utopia&
+md garamond&
+md utopia&
+md utopia&
+rsfs{*}&
+ams{*}&
+yes\tabularnewline
+\hline
+\end{tabular}
+
+\begin{center}\captiontitle[Comparison of features]{\label{cap:FeatureComparison}Comparison
+of the features of different packages.}\end{center}
+
+\end{sidewaystable}
+
+The only sans serif fonts with matching math fonts are CM Bright and
+Arev Sans. Both work well for presentations. Computer Modern sans
+serif, CM Bright, Arev Sans, Bera Sans, Kerkis Sans, Helvetica, and
+Avant Garde all work well as sans serif fonts that accompany a primary
+roman font. Computer Modern typewriter, \texttt{txtt} (from txfonts),
+Luxi Mono~\cite{CTANluximono}, and Bera Mono all work well as typewriters
+fonts.
+
+There are several other free fonts easily used in \LaTeX{}, notably
+the Bera fonts, Luxi Mono, and efont-serif~\cite{efont-serif}. Malte
+Rosenau converted the Bitstream Vera fonts into Type~1 format, renaming
+the fonts to Bera~\cite{CTANbera}. Bera includes serif, sans, and
+mono. Bera Serif does not have a matching italic font, but the DejaVu
+fonts~\cite{dejavu} are an extension of Bitstream Vera that include
+a true serif italic, as well as Greek and Cyrillic for all three styles.
+Except for Bera Sans and Arev Sans, none of the previous fonts have
+matching math fonts.
+
+
+\section{\label{sec:Creation}Creation of this Survey}
+
+It might be technically feasible to create a font survey such as this
+article as a single \TeX{} document. This document, however, was not
+created in that fashion for two reasons. First, it would be an inordinate
+amount of work to switch between fonts within the same document. The
+authors of the \LaTeX{} packages put in a considerable amount of effort
+to set up the fonts for a document, and it would be silly to duplicate
+their work. Second, we want to show to a reader exactly what he or
+she will get by using that package.
+
+In order to accomplish these goals, a small \LaTeX{} file (see Figure~\ref{cap:SampleLaTeXfile}
+for an example) was made for each font that loaded the appropriate
+packages and then loaded a common text fragment for display. Each
+file was \LaTeX{}ed and then converted to an EPS file using \texttt{dvips}
+with the -E option. The -E option creates a tight bounding box around
+the text. The main file \texttt{survey.tex} then included each of
+these graphics, and was compiled with \texttt{pdflatex}. For some
+reason, \texttt{dvips} created an unusable one-page PS file when including
+\texttt{mbtimes.eps}. HeVeA was used to convert \texttt{survey.tex}
+directly to HTML.%
+\begin{figure}
+\begin{quote}
+\texttt{\textbackslash{}documentclass\{article\}}~\\
+\texttt{\textbackslash{}include\{sampleformat\}}~\\
+\texttt{\hspace*{.01em}~~\textbackslash{}usepackage\{fourier\}}~\\
+\texttt{\textbackslash{}begin\{document\}}~\\
+\texttt{\hspace*{.01em}~~\textbackslash{}include\{textfragment\}}~\\
+\texttt{\textbackslash{}end\{document\}}
+\end{quote}
+\captiontitle[Sample \LaTeX{} file]{\label{cap:SampleLaTeXfile}Sample
+\LaTeX{} file for \texttt{fourier}. The file \texttt{sampleformat.tex}
+contains page layout commands, such as setting the margins and removing
+the page numbers. The file \texttt{textfragment.tex} contains the
+text and mathematics fragment to be displayed. Both included files
+are used by every sample \LaTeX{} file. The line {}``\texttt{\textbackslash{}usepackage\{fourier\}}''
+was changed for each sample to the package listed in the sample's
+caption.}
+\end{figure}
+
+
+
+\subsection*{Acknowledgements}
+
+Thanks to Michael Zedler, Ulrik Vieth, Karl Berry, William Slough,
+and the anonymous referees for helpful comments.
+
+\begin{thebibliography}{10}
+\bibitem{CTANfontinstgd}Philipp Lehman, The Font Installation Guide on \CTAN{/info/Type1fonts/fontinstallationguide}.
+\bibitem{CTANmetatype1}Bogus\l{}aw Jackowski, Janusz M. Nowacki, and Piotr Strzelczyk, MetaType1
+on \CTAN{/fonts/utilities/metatype1}
+\bibitem{WASmathfonts}Walter A. Schmidt, Mathematikschriften f\"ur \LaTeX{}, \url{http://home.vr-web.de/was/mathfonts.html}.
+\bibitem{bluesky}American Mathematical Society (AMS) webpage for Computer Modern Type~1
+fonts, \url{http://www.ams.org/tex/type1-fonts.html}.
+\bibitem{CMBook}Donald E. Knuth, \emph{Computer Modern Typefaces}, Addison-Wesley
+Pub. Co., 1986.
+\bibitem{CMRgain}Raph Levien, Effect of gain on appearance of Computer Modern, \url{http://levien.com/type/cmr/gain.html}.
+\bibitem{DigTyp}Donald E. Knuth, \emph{Digital Typography}, Stanford, California:
+Center for the Study of Language and Information, 1999.
+\bibitem{CTANbluesky}Blue Sky Research and Y\&Y, Inc., Computer Modern Type~1 fonts on
+\CTAN{/fonts/cm/ps-type1/bluesky}.
+\bibitem{CTANbakoma}Basil K. Malyshev, BaKoMa Computer Modern Type~1 and TrueType fonts
+on \CTAN{/fonts/cm/ps-type1/bakoma}.
+\bibitem{CTANec}J\"org Knappen and Norbert Schwarz, European Computer Modern fonts
+on \CTAN{/fonts/ec}.
+\bibitem{CTANtt2001}Szab\'o P\'eter, Tt2001 fonts on \CTAN{/fonts/ps-type1/tt2001}.
+\bibitem{textrace}Szab\'o P\'eter, webpage for \texttt{textrace} and Tt2001 fonts,
+\url{http://www.inf.bme.hu/~pts/textrace}.
+\bibitem{CTANcm-super}Vladimir Volovich, CM-Super on \CTAN{/fonts/ps-type1/cm-super}.
+\bibitem{CM-Super}Vladimir Volovich, \TUGboat{tb24-1/volovich.pdf}{CM-Super}: Automatic
+creation of efficient Type~1 fonts from \MF\  fonts, \emph{TUGboat},
+24 (1) 2003, 75--78.
+\bibitem{CTANlm}Bogus\l{}aw Jackowski and Janusz M. Nowacki, Latin Modern on \CTAN{/fonts/ps-type1/lm}.
+\bibitem{LatinModern}Bogus\l{}aw Jackowski and Janusz M. Nowacki, \TUGboat{tb24-1/jackowski.pdf}{Latin
+Modern}: Enhancing Computer Modern with accents, accents, accents,
+\emph{TUGboat}, 24 (1) 2003, 64--74.
+\bibitem{texpower}\TeX{}Power \LaTeX{} style files by Stephan Lehmke, \url{http://texpower.sourceforge.net}.
+\bibitem{CTANcmbright}Walter A. Schmidt, CM Bright on \CTAN{/fonts/cmbright}.
+\bibitem{CTANhfbright}Harald Harders, hfbright on \CTAN{/fonts/ps-type1/hfbright}.
+\bibitem{concretebook}Ronald L. Graham, Donald E. Knuth, and Oren Patashnik, \emph{Concrete
+Mathematics,} Addison-Wesley, 1989.
+\bibitem{CTANconcmath}Ulrik Vieth, Concrete Math fonts on \CTAN{/fonts/concmath}.
+\bibitem{CTANccfonts}Walter Schmidt, ccfonts on \CTAN{/macros/latex/contrib/ccfonts}.
+\bibitem{CTANeulervm}Walter Schmidt, eulervm on \CTAN{/fonts/eulervm}.
+\bibitem{eulervm}Walter Schmidt, \TUGboat{tb23-3-4/tb75schmidt.pdf}{Euler-VM}: Generic
+math fonts for use with \LaTeX{}, \emph{TUGboat}, 23 (3/4) 2002, 301--303.
+\bibitem{CTANiwona}Janusz M. Nowacki, Iwona on \CTAN{/fonts/iwona}.
+\bibitem{CTANkurier}Janusz M. Nowacki, Kurier on \CTAN{/fonts/kurier}.
+\bibitem{CTANantp}Janusz M. Nowacki, Antykwa P\'o\l{}tawskiego on \CTAN{/fonts/psfonts/polish/antp}.
+\bibitem{CTANantt}Janusz M. Nowacki, Antykwa Toru\acuten{}ska on \CTAN{/fonts/antt}.
+\bibitem{AntTorunska}Janusz M. Nowacki, \TUGboat{tb19-3/tb60antyk.pdf}{Antykwa Toru\acuten{}ska}:
+an electronic replica of a Polish traditional type, \emph{TUGboat},
+19 (3) 1998, 242--243.
+\bibitem{CTANpsnfss}Sebastian Rahtz and Walter A. Schmidt, PSNFSS on \CTAN{/macros/latex/required/psnfss}.
+\bibitem{Kerkis}Antonis Tsolomitis, The \TUGboat{tb23-3-4/tb75tsol.pdf}{Kerkis}
+font family, \emph{TUGboat}, 23 (3/4) 2002, 296--301.
+\bibitem{CTANkerkis}Antonis Tsolomitis, Kerkis on \CTAN{/fonts/greek/kerkis}.
+\bibitem{CTANfouriernc}Michael Zedler, fouriernc on \CTAN{/fonts/fouriernc}.
+\bibitem{CTANpxfonts}Young Ryu, pxfonts on \CTAN{/fonts/pxfonts}.
+\bibitem{CTANmathpazo}Diego Puga, Pazo Math fonts on \CTAN{/fonts/mathpazo}.
+\bibitem{CTANfpl}Ralf Stubner, FPL font on \CTAN{/fonts/fpl}.
+\bibitem{fplneu}Walter Schmidt, FPL Neu package, \url{http://home.vr-web.de/was/x/FPL/}.
+\bibitem{CTANtxfonts}Young Ryu, txfonts on \CTAN{/fonts/txfonts}.
+\bibitem{CTANbelleek}Richard Kinch, Belleek fonts on \CTAN{/fonts/belleek}.
+\bibitem{Belleek}Richard J. Kinch, \TUGboat{tb19-3/tb60kinch.pdf}{Belleek}: A call
+for \MF\  revival, \emph{TUGboat}, 19 (3) 1998, 244--249.
+\bibitem{STIX}STIX Fonts project, \url{http://www.stixfonts.org}.
+\bibitem{mbtimes}Michel Bovani, mbtimes at \url{ftp://ftp.gutenberg.eu.org/pub/gut/distribs/mbtimes/}.
+\bibitem{Omega}John Plaice and Yannis Haralambous, Omega at \url{http://omega.enstb.org}.
+\bibitem{MgOpenModerna}MgOpenModerna, one of the MgOpen fonts, \url{http://www.ellak.gr/fonts/mgopen}.
+\bibitem{FreeSans}FreeSans, one of the Free UCS Outline Fonts, \url{http://savannah.nongnu.org/projects/freefont}.
+\bibitem{vera}Bitstream Vera, released by Bitstream in cooperation with the Gnome
+Foundation, \url{http://www.gnome.org/fonts}.
+\bibitem{CTANbera}Malte Rosenau, Bera Postscript Type~1 fonts (converted from Bitstream
+Vera fonts, which necessitated the name change) and \LaTeX{} support
+files by Walter~A. Schmidt, on \CTAN{/fonts/bera}.
+\bibitem{CTANarev}Tavmjong Bah and Stephen Hartke, Arev Sans on \CTAN{/fonts/arev}.
+\bibitem{arev}Tavmjong Bah, Arev Sans, \url{http://tavmjong.free.fr/FONTS}.
+\bibitem{CTANcharter}Bitstream Charter on \CTAN{/fonts/charter}.
+\bibitem{CTANmathdesign}Paul Pichaureau, Math Design fonts on \CTAN{/fonts/mathdesign}.
+\bibitem{CharisSIL}Charis SIL, \url{http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&item_id=CharisSILfont}.
+\bibitem{comicsans}Comic Sans, part of Microsoft's core web fonts, available at \url{http://corefonts.sourceforge.net/}.
+\bibitem{CTANcomicsans}Scott Pakin, Comic Sans \LaTeX{} package on \CTAN{/macros/latex/contrib/comicsans}.
+\bibitem{CTANgaramond}URW Garamond on \CTAN{/fonts/urw/garamond}.
+\bibitem{CTANutopia}Adobe Utopia on \CTAN{/fonts/utopia}.
+\bibitem{CTANfourier}Michel Bovani, Fourier-GUTenberg on \CTAN{/fonts/fourier-GUT}.
+\bibitem{CTANmnsymbol}Achim Blumensath, MnSymbol on \CTAN{/fonts/mnsymbol}.
+\bibitem{CTANminionpro}Achim Blumensath, Andreas B\"uhmann, and Michael Zedler, MinionPro
+on \CTAN{/fonts/minionpro}.
+\bibitem{dejavu}DejaVu fonts, \url{http://dejavu.sourceforge.net}.
+\bibitem{CTANluximono}Luxi Mono on \CTAN{/fonts/LuxiMono}.
+\bibitem{efont-serif}efont-serif at \url{http://openlab.jp/efont/serif/}.
+\end{thebibliography}
+\begin{comment}
+Victor Gaultney, Gentium at \url{http://scripts.sil.org/gentium}.
+
+Michael Zedler, gentium at \url{http://www.hft.ei.tum.de/mz/ggn.tar.bz2}.
+\end{comment}
+%filler to avoid comment environment as last line
+\end{document}

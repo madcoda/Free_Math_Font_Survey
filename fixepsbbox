@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# fixepsbbox (filename) (left x target) (tolerance)
+
+EPSFile=$1
+TargetX=$2
+Tolerance=$3
+
+LeftX=`grep BoundingBox $EPSFile | cut -d' ' -f 2`
+
+TestVal=$(( ( $LeftX < ( $TargetX - $Tolerance ) ) || ( $LeftX > ( $TargetX + $Tolerance ) ) ))
+
+if [ $TestVal -ne 0 ]
+then
+  echo "Changing left edge of $EPSFile from $LeftX to $TargetX."
+  TmpFile="tmp_`date +%Y-%m-%d-%H-%M-%S`.eps"
+  sed -e 's/BoundingBox: [-]*[[:digit:]]* /BoundingBox: '$TargetX' /g' $EPSFile > $TmpFile
+  mv $TmpFile $EPSFile
+fi
+
+
